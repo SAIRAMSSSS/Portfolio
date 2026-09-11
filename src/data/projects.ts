@@ -65,11 +65,11 @@ export const PROJECTS: ProjectItem[] = [
     ],
     result: "Production-ready game asset optimized for 60+ FPS in UE5 deferred rendering pipelines, featuring 4K PBR texture maps and zero visual baking artifacts.",
     visuals: {
-      hero: "/images/art/block_beauty.png",
+      hero: "/images/projects/lantern_hero.jpg",
       wireframe: "/images/art/block_wireframe.png",
       normals: "/images/art/block_matids.png",
       detail: "/images/art/primary_ref.jpg",
-      caption: "Interactive PBR Blockout & Topology Inspector",
+      caption: "High-Poly PBR Hero Render & Topology Inspector",
       badge: "HERO ASSET // UE5 READY"
     },
     metrics: [
@@ -78,7 +78,6 @@ export const PROJECTS: ProjectItem[] = [
       { label: "Texture Maps", value: "4K PBR" },
       { label: "LOD Levels", value: "4 Custom" }
     ],
-    githubUrl: "https://github.com/SAIRAMSSSS",
     interactiveLabId: "lantern-inspector"
   },
   {
@@ -113,7 +112,8 @@ export const PROJECTS: ProjectItem[] = [
     ],
     result: "Lightweight C++ rendering engine running at 240+ FPS with live GLSL shader reload, indexed mesh rendering, and zero memory leaks.",
     visuals: {
-      hero: "/images/art/block_wireframe.png",
+      hero: "/images/projects/opengl_lab.jpg",
+      wireframe: "/images/art/block_wireframe.png",
       normals: "/images/art/block_beauty.png",
       caption: "Real-Time Pipeline Buffer Inspection & Shading Architecture",
       badge: "C++ // OPENGL 4.6 CORE"
@@ -124,7 +124,6 @@ export const PROJECTS: ProjectItem[] = [
       { label: "Memory Footprint", value: "< 32 MB" },
       { label: "Shader Hot-Reload", value: "< 15 ms" }
     ],
-    githubUrl: "https://github.com/SAIRAMSSSS",
     interactiveLabId: "opengl-canvas"
   },
   {
@@ -157,7 +156,8 @@ export const PROJECTS: ProjectItem[] = [
     ],
     result: "Award-winning cybersecurity tool recognized at collegiate hackathons (CMS College 3rd Place among 50+ teams; SRCAS National Hackathon Runner-up).",
     visuals: {
-      hero: "/images/art/block_matids.png",
+      hero: "/images/projects/iot_analyzer.jpg",
+      wireframe: "/images/art/block_matids.png",
       caption: "Live Network Traffic Packet Parsing & CVE Anomaly Detection",
       badge: "HACKATHON WINNER // SEC_NET"
     },
@@ -199,7 +199,8 @@ export const PROJECTS: ProjectItem[] = [
     ],
     result: "Rock-solid gameplay framework powering 3 game jam submissions (Retropunk and others) with fluid movement and zero gameplay desyncs.",
     visuals: {
-      hero: "/images/art/beetle_beauty.png",
+      hero: "/images/projects/game_systems.jpg",
+      wireframe: "/images/art/beetle_beauty.png",
       caption: "Decoupled Movement State Machine & Modular Interaction Architecture",
       badge: "3 GAME JAMS // UNREAL ENGINE"
     },
@@ -241,7 +242,8 @@ export const PROJECTS: ProjectItem[] = [
     ],
     result: "Robust visual testbed providing deep architectural visibility into neural training mechanics and convergence behaviors.",
     visuals: {
-      hero: "/images/art/block_normals.png",
+      hero: "/images/projects/intelligence_lab.jpg",
+      wireframe: "/images/art/block_normals.png",
       caption: "Neural Network Architecture & Gradient Flow Dynamics",
       badge: "PYTORCH // NUMPY PIPELINE"
     },
@@ -251,7 +253,6 @@ export const PROJECTS: ProjectItem[] = [
       { label: "Tensor Tracking", value: "Full Precision (FP32)" },
       { label: "Architecture", value: "MLP & CNN Experiments" }
     ],
-    githubUrl: "https://github.com/SAIRAMSSSS",
     interactiveLabId: "intelligence-lab"
   }
 ];
