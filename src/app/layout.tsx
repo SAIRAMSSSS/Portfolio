@@ -27,6 +27,13 @@ export const metadata: Metadata = {
     "Syntrix"
   ],
   authors: [{ name: "Sairam R", url: "https://github.com/SAIRAMSSSS" }],
+  icons: {
+    icon: [
+      { url: "/icon.svg", type: "image/svg+xml" },
+      { url: "/favicon.ico", sizes: "any" },
+    ],
+    apple: "/apple-icon.png",
+  },
   openGraph: {
     title: "SAIRAM R // Technical Environment Artist & Graphics Programmer",
     description: "I build worlds and the systems that run them. Art ↔ Code ↔ Games.",
