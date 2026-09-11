@@ -1,0 +1,152 @@
+@import "tailwindcss";
+
+:root {
+  --bg-primary: #05070a;
+  --bg-surface: #0a0e17;
+  --bg-panel: #111726;
+  --border-dim: #1e293b;
+  --border-bright: #334155;
+  --accent-art: #f59e0b;
+  --accent-art-rgb: 245, 158, 11;
+  --accent-code: #06b6d4;
+  --accent-code-rgb: 6, 182, 212;
+  --accent-active: #f59e0b;
+  --accent-active-rgb: 245, 158, 11;
+  --text-main: #f8fafc;
+  --text-sub: #94a3b8;
+  --text-dim: #64748b;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+}
+
+.mode-code {
+  --accent-active: var(--accent-code);
+  --accent-active-rgb: var(--accent-code-rgb);
+}
+
+.mode-art {
+  --accent-active: var(--accent-art);
+  --accent-active-rgb: var(--accent-art-rgb);
+}
+
+body {
+  background-color: var(--bg-primary);
+  color: var(--text-main);
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  overflow-x: hidden;
+  selection-background-color: var(--accent-active);
+  selection-color: #000000;
+}
+
+::selection {
+  background-color: rgba(var(--accent-active-rgb), 0.35);
+  color: #ffffff;
+}
+
+/* Tactical Tech Grid Background */
+.bg-tech-grid {
+  background-size: 40px 40px;
+  background-image: 
+    linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+}
+
+.bg-tech-dots {
+  background-size: 24px 24px;
+  background-image: radial-gradient(circle, rgba(255, 255, 255, 0.08) 1px, transparent 1px);
+}
+
+/* Subtle Scanline Overlay */
+.scanlines {
+  background: linear-gradient(
+    rgba(18, 16, 16, 0) 50%, 
+    rgba(0, 0, 0, 0.25) 50%
+  );
+  background-size: 100% 4px;
+  pointer-events: none;
+}
+
+/* Custom Tactical Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #06080d;
+}
+::-webkit-scrollbar-thumb {
+  background: #1e293b;
+  border-radius: 2px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(var(--accent-active-rgb), 0.7);
+}
+
+/* Kinetic Blueprint Border Boxes */
+.blueprint-box {
+  position: relative;
+  background: rgba(10, 14, 23, 0.75);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.blueprint-box:hover {
+  border-color: rgba(var(--accent-active-rgb), 0.4);
+}
+
+.blueprint-box::before,
+.blueprint-box::after {
+  content: "";
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  pointer-events: none;
+}
+
+.blueprint-box::before {
+  top: -1px;
+  left: -1px;
+  border-top: 2px solid rgba(var(--accent-active-rgb), 0.8);
+  border-left: 2px solid rgba(var(--accent-active-rgb), 0.8);
+}
+
+.blueprint-box::after {
+  bottom: -1px;
+  right: -1px;
+  border-bottom: 2px solid rgba(var(--accent-active-rgb), 0.8);
+  border-right: 2px solid rgba(var(--accent-active-rgb), 0.8);
+}
+
+/* Tactical Corner Crosshair Marker */
+.crosshair-corner {
+  position: relative;
+}
+.crosshair-corner::before {
+  content: "+";
+  position: absolute;
+  top: 4px;
+  right: 6px;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: rgba(255, 255, 255, 0.25);
+  pointer-events: none;
+}
+
+/* Glitch animation snippet */
+@keyframes techPulse {
+  0%, 100% { opacity: 0.9; }
+  50% { opacity: 0.4; }
+}
+
+.animate-tech-pulse {
+  animation: techPulse 2.5s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+@keyframes scanlineMove {
+  0% { transform: translateY(-100%); }
+  100% { transform: translateY(1000%); }
+}
+
+.animate-scan-sweep {
+  animation: scanlineMove 8s linear infinite;
+}
