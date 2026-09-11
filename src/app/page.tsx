@@ -4,7 +4,6 @@ import React from "react";
 import { DualityProvider } from "@/context/DualityContext";
 import { HeaderNav } from "@/components/layout/HeaderNav";
 import { HeroSection } from "@/components/hero/HeroSection";
-import { DualityShowcase } from "@/components/duality/DualityShowcase";
 import { ProjectArchive } from "@/components/projects/ProjectArchive";
 import { EnvironmentArtShowcase } from "@/components/art/EnvironmentArtShowcase";
 import { RenderingLab } from "@/components/graphics/RenderingLab";
@@ -28,10 +27,7 @@ export default function HomePage() {
         {/* 1. Cinematic Hero Section with 3D Duality WebGL Canvas */}
         <HeroSection />
 
-        {/* 2. Interactive Duality Concept (Art vs Code Wipe) */}
-        <DualityShowcase />
-
-        {/* 3. Project Archive / Digital Museum Artifacts (001 - 005) */}
+        {/* 2. Project Archive / Digital Museum Artifacts (001 - 005) */}
         <ProjectArchive />
 
         {/* 4. Environment Art Showcase (Art Director Inspection) */}

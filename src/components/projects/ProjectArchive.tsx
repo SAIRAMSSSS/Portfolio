@@ -232,30 +232,38 @@ export function ProjectArchive() {
 
             {/* Modal Scrollable Content */}
             <div className="flex-1 overflow-y-auto p-6 sm:p-10 space-y-8 bg-[#07090f] text-sm">
-              {/* Media Gallery */}
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div className="aspect-16/10 bg-black border border-white/15 overflow-hidden">
-                  <img 
-                    src={selectedProject.visuals.hero} 
-                    alt="Hero Visual" 
-                    className="w-full h-full object-cover"
-                  />
-                  <div className="p-1.5 bg-black/75 text-[10px] font-mono text-slate-400 border-t border-white/10">
-                    PASS 1: BEAUTY / COMPOSITION RENDER
-                  </div>
+              {/* Media Gallery / Master Artifact Viewport */}
+              <div className="relative aspect-16/9 bg-black border border-white/20 overflow-hidden shadow-2xl group">
+                <img 
+                  src={selectedProject.visuals.hero} 
+                  alt={selectedProject.title}
+                  className="w-full h-full object-cover group-hover:scale-102 transition-transform duration-500"
+                />
+                
+                {/* Visual Badges */}
+                <div className="absolute top-4 left-4 bg-black/85 backdrop-blur-md px-3 py-1.5 border border-white/20 font-mono text-[11px] text-amber-300 tracking-wider flex items-center gap-2">
+                  <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+                  <span>{selectedProject.visuals.badge}</span>
                 </div>
-                {selectedProject.visuals.wireframe && (
-                  <div className="aspect-16/10 bg-black border border-white/15 overflow-hidden">
-                    <img 
-                      src={selectedProject.visuals.wireframe} 
-                      alt="Wireframe Pass" 
-                      className="w-full h-full object-cover"
-                    />
-                    <div className="p-1.5 bg-black/75 text-[10px] font-mono text-slate-400 border-t border-white/10">
-                      PASS 2: WIREFRAME & TOPOLOGY INSPECTION
-                    </div>
-                  </div>
-                )}
+
+                <div className="absolute top-4 right-4 bg-black/85 backdrop-blur-md px-3 py-1.5 border border-white/20 font-mono text-[11px] text-slate-300">
+                  CATEGORY: {selectedProject.category}
+                </div>
+
+                <div className="absolute bottom-4 left-4 right-4 bg-black/85 backdrop-blur-md p-3 border border-white/20 flex flex-wrap items-center justify-between gap-2 font-mono text-xs">
+                  <span className="text-slate-300">{selectedProject.visuals.caption}</span>
+                  {selectedProject.githubUrl && (
+                    <a
+                      href={selectedProject.githubUrl}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="px-2.5 py-1 bg-white/10 hover:bg-white/20 border border-white/20 text-amber-300 hover:text-white transition-colors flex items-center gap-1.5"
+                    >
+                      <GithubIcon className="w-3.5 h-3.5" />
+                      <span>OPEN SOURCE REPO</span>
+                    </a>
+                  )}
+                </div>
               </div>
 
               {/* Problem & Idea */}
