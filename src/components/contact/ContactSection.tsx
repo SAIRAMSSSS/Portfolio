@@ -14,7 +14,8 @@ import {
   Copy, 
   Check, 
   Globe,
-  Radio
+  Radio,
+  ExternalLink
 } from "lucide-react";
 
 export function ContactSection() {
@@ -42,7 +43,7 @@ export function ContactSection() {
 
   return (
     <section id="contact" className="py-24 sm:py-36 relative bg-[#030408] border-t border-white/10 overflow-hidden">
-      {/* Background cybernetic grid & radar circle */}
+      {/* Background cybernetic grid */}
       <div className="absolute inset-0 bg-tech-grid opacity-20 pointer-events-none" />
       <div className="absolute -bottom-48 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-amber-600/10 rounded-full blur-[160px] pointer-events-none" />
 
@@ -51,10 +52,10 @@ export function ContactSection() {
         <div className="text-center max-w-4xl mx-auto space-y-6">
           <div className="inline-flex items-center gap-2 px-3 py-1 bg-white/5 border border-white/10 font-mono text-xs text-amber-400">
             <Radio className="w-3.5 h-3.5 animate-pulse text-emerald-400" />
-            <span>COMMUNICATION CHANNEL OPEN</span>
+            <span>COMMUNICATION CHANNEL ACTIVE // SAIRAM R</span>
           </div>
 
-          <h2 className="text-4xl sm:text-6xl md:text-7xl font-black text-white tracking-tighter uppercase leading-tight">
+          <h2 className="text-4xl sm:text-6xl md:text-7xl font-black text-white tracking-tighter uppercase leading-tight font-tech">
             HAVE A WORLD <br />
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-400 via-amber-200 to-white">
               TO BUILD?
@@ -81,7 +82,7 @@ export function ContactSection() {
             <div className="flex items-center justify-between border-b border-white/10 pb-4">
               <div className="flex items-center gap-2">
                 <Terminal className="w-4 h-4 text-emerald-400" />
-                <span className="font-bold text-white tracking-wider">DIRECT DISPATCH TRANSMITTER</span>
+                <span className="font-bold text-white tracking-wider font-tech">DIRECT DISPATCH TRANSMITTER</span>
               </div>
               <span className="text-slate-500 text-[10px]">ENCRYPTION: AES-256</span>
             </div>
@@ -91,9 +92,9 @@ export function ContactSection() {
                 <div className="w-10 h-10 rounded-full bg-emerald-500/20 border border-emerald-400 flex items-center justify-center mx-auto text-emerald-300">
                   ✓
                 </div>
-                <h4 className="text-white font-bold text-sm">TRANSMISSION RECEIVED</h4>
+                <h4 className="text-white font-bold text-sm">TRANSMISSION DISPATCHED</h4>
                 <p className="text-slate-300 text-xs font-sans">
-                  Your signal has been routed to Sairam&apos;s primary workstation. Expect a direct response shortly.
+                  Your signal has been routed to Sairam R&apos;s primary workstation ({PROFILE.links.email}). Expect a direct response shortly.
                 </p>
               </div>
             ) : (
@@ -106,13 +107,13 @@ export function ContactSection() {
                       required
                       value={msgInput.name}
                       onChange={(e) => setMsgInput({ ...msgInput, name: e.target.value })}
-                      placeholder="e.g. Studio Art Director / Recruiter"
+                      placeholder="e.g. Studio Art Director / Tech Lead"
                       className="w-full bg-black/60 border border-white/10 p-2.5 text-white outline-hidden focus:border-amber-400 font-sans text-xs"
                     />
                   </div>
 
                   <div className="space-y-1">
-                    <label className="text-slate-400 text-[10px] uppercase font-bold">RETURN FREQUENCY / EMAIL</label>
+                    <label className="text-slate-400 text-[10px] uppercase font-bold">RETURN EMAIL</label>
                     <input
                       type="email"
                       required
@@ -138,7 +139,7 @@ export function ContactSection() {
 
                 <button
                   type="submit"
-                  className="w-full py-3 bg-amber-500 hover:bg-amber-400 text-black font-bold tracking-widest uppercase flex items-center justify-center gap-2 transition-colors cursor-pointer shadow-lg shadow-amber-500/20"
+                  className="w-full py-3 bg-amber-500 hover:bg-amber-400 text-black font-bold tracking-widest uppercase flex items-center justify-center gap-2 transition-colors cursor-pointer shadow-lg shadow-amber-500/20 font-mono"
                 >
                   <Send className="w-3.5 h-3.5" />
                   <span>TRANSMIT SIGNAL</span>
@@ -153,10 +154,27 @@ export function ContactSection() {
               <span className="text-amber-400 font-bold uppercase tracking-widest text-[10px]">
                 OFFICIAL REPOSITORIES & COMMS
               </span>
-              <h3 className="text-xl font-bold text-white">DIRECT CHANNELS</h3>
+              <h3 className="text-xl font-bold text-white font-tech">DIRECT CHANNELS</h3>
             </div>
 
             <div className="space-y-3">
+              {/* LinkedIn */}
+              <a
+                href={PROFILE.links.linkedin}
+                target="_blank"
+                rel="noreferrer"
+                className="flex items-center justify-between p-3 bg-black/60 border border-white/10 hover:border-cyan-400/40 text-slate-300 hover:text-white transition-colors"
+              >
+                <div className="flex items-center gap-3">
+                  <LinkedinIcon className="w-4 h-4 text-cyan-400" />
+                  <div>
+                    <div className="font-bold text-white">LINKEDIN</div>
+                    <div className="text-[10px] text-slate-400 font-sans">sairam-r-7900b136b</div>
+                  </div>
+                </div>
+                <span className="text-cyan-400 text-[10px]">VISIT →</span>
+              </a>
+
               {/* GitHub */}
               <a
                 href={PROFILE.links.github}
@@ -168,39 +186,22 @@ export function ContactSection() {
                   <GithubIcon className="w-4 h-4 text-white" />
                   <div>
                     <div className="font-bold text-white">GITHUB</div>
-                    <div className="text-[10px] text-slate-500">{PROFILE.handle} (30+ Repos)</div>
+                    <div className="text-[10px] text-slate-400 font-sans">{PROFILE.handle} (30+ Repos)</div>
                   </div>
                 </div>
-                <span className="text-slate-500 text-[10px]">VISIT →</span>
-              </a>
-
-              {/* LinkedIn */}
-              <a
-                href={PROFILE.links.linkedin}
-                target="_blank"
-                rel="noreferrer"
-                className="flex items-center justify-between p-3 bg-black/60 border border-white/10 hover:border-white/30 text-slate-300 hover:text-white transition-colors"
-              >
-                <div className="flex items-center gap-3">
-                  <LinkedinIcon className="w-4 h-4 text-cyan-400" />
-                  <div>
-                    <div className="font-bold text-white">LINKEDIN</div>
-                    <div className="text-[10px] text-slate-500">Professional Network</div>
-                  </div>
-                </div>
-                <span className="text-slate-500 text-[10px]">VISIT →</span>
+                <span className="text-slate-400 text-[10px]">VISIT →</span>
               </a>
 
               {/* Email Copy */}
               <div 
                 onClick={copyEmail}
-                className="flex items-center justify-between p-3 bg-black/60 border border-white/10 hover:border-white/30 text-slate-300 hover:text-white transition-colors cursor-pointer"
+                className="flex items-center justify-between p-3 bg-black/60 border border-white/10 hover:border-amber-400/40 text-slate-300 hover:text-white transition-colors cursor-pointer"
               >
                 <div className="flex items-center gap-3">
                   <Mail className="w-4 h-4 text-amber-400" />
                   <div>
                     <div className="font-bold text-white">EMAIL</div>
-                    <div className="text-[10px] text-slate-500">{PROFILE.links.email}</div>
+                    <div className="text-[10px] text-slate-400 font-sans">{PROFILE.links.email}</div>
                   </div>
                 </div>
                 <button className="text-slate-400 hover:text-white text-[10px] flex items-center gap-1">
@@ -225,7 +226,7 @@ export function ContactSection() {
               </button>
             </div>
 
-            <div className="pt-3 border-t border-white/10 flex items-center justify-between text-[10px] text-slate-500">
+            <div className="pt-3 border-t border-white/10 flex items-center justify-between text-[10px] text-slate-500 font-mono">
               <span>LOCATION: {PROFILE.coordinates.label}</span>
               <span>TIMEZONE: UTC+05:30 [IST]</span>
             </div>
@@ -235,7 +236,7 @@ export function ContactSection() {
         {/* Footer Copyright Strip */}
         <div className="pt-16 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-4 font-mono text-xs text-slate-500">
           <div>
-            © {new Date().getFullYear()} {PROFILE.name}. ENGINEERED WITH NEXT.JS, THREE.JS & TAILWIND.
+            © {new Date().getFullYear()} {PROFILE.name}. ENGINEERED WITH NEXT.JS, THREE.JS, OPENGL & TAILWIND.
           </div>
           <div className="flex items-center gap-4">
             <button

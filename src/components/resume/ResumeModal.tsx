@@ -7,7 +7,6 @@ import { PROFILE } from "@/data/profile";
 import { PROJECTS } from "@/data/projects";
 import { HACKATHON_STATS, HACKATHON_LOGS } from "@/data/hackathons";
 import { SYNTRIX_DATA } from "@/data/community";
-import { TECH_ITEMS } from "@/data/skills";
 import { X, Download, Printer, ExternalLink, ShieldCheck, Award, Terminal, Layers } from "lucide-react";
 
 export function ResumeModal() {
@@ -22,24 +21,27 @@ export function ResumeModal() {
 
   const handleDownload = () => {
     SoundEngine.playClick();
-    // Generates a clean text/markdown download of the verified resume
     const content = `
 ===================================================================
 ${PROFILE.name} - RESUME MANIFEST
 ${PROFILE.primaryTitle}
 Intersection: ART ↔ CODE ↔ GAMES
 Location: ${PROFILE.coordinates.label}
-GitHub: ${PROFILE.links.github} | LinkedIn: ${PROFILE.links.linkedin}
+Email: ${PROFILE.links.email}
+LinkedIn: ${PROFILE.links.linkedin}
+GitHub: ${PROFILE.links.github}
 ===================================================================
 
 [EDUCATION]
 ${PROFILE.degree}
-${PROFILE.institution}
 
 [CORE SUMMARY]
 ${PROFILE.bio}
 
-[FEATURED TECHNICAL PROJECTS]
+[FEATURED TECHNICAL PROJECTS & REELS]
+* Real-Time Environment Reels: 'LifeSupport Room' and 'Movie_009' Walkthroughs
+  High-fidelity real-time lighting, Lumen GI, modular kits, volumetric atmosphere.
+
 ${PROJECTS.map(p => `
 * ${p.title} (${p.category})
   Role: ${p.role} | Tech: ${p.techStack.join(", ")}
@@ -53,13 +55,13 @@ ${PROJECTS.map(p => `
 * SRCAS National Level Hackathon: ${HACKATHON_STATS.srcasResult}
 * Game Jams: ${HACKATHON_STATS.gameJams} (Retropunk & others)
 
-[LEADERSHIP & COMMUNITY]
-* Co-Founder of ${SYNTRIX_DATA.name} (${SYNTRIX_DATA.memberCount})
+[LEADERSHIP & INDEPENDENT COMMUNITY]
+* Co-Founder of ${SYNTRIX_DATA.name} (${SYNTRIX_DATA.memberCount} outside college)
   ${SYNTRIX_DATA.mission}
   Weekly Voice Meetups: ${SYNTRIX_DATA.weeklyVoiceAttendees}
 
 [TECHNICAL ARSENAL]
-* Environment Art: Blender 5.x, Substance Painter, InstaMAT, Unreal Engine 5, PBR Materials
+* Environment Art: Blender 5.x, Substance Painter, InstaMAT, Unreal Engine 5, PBR Materials, ZenUV
 * Graphics Programming: OpenGL 4.6 Core, GLSL Shaders, C++, Vulkan API, GLFW, GLAD
 * Systems & Languages: C++, C, Python, Linux, CMake, Git
 * AI & Analytics: PyTorch, NumPy, Pandas, Scikit-Learn
@@ -71,7 +73,7 @@ ${PROJECTS.map(p => `
     const url = URL.createObjectURL(blob);
     const a = document.createElement("a");
     a.href = url;
-    a.download = `Sairam_S_Technical_Resume.txt`;
+    a.download = `Sairam_R_Technical_Resume.txt`;
     a.click();
     URL.revokeObjectURL(url);
   };
@@ -83,18 +85,18 @@ ${PROJECTS.map(p => `
         <div className="flex items-center justify-between px-6 py-3 bg-[#111726] border-b border-white/10 select-none">
           <div className="flex items-center gap-2 font-mono text-xs">
             <ShieldCheck className="w-4 h-4 text-emerald-400" />
-            <span className="font-bold text-white tracking-wider">
+            <span className="font-bold text-white tracking-wider font-tech">
               VERIFIED RESUME MANIFEST // {PROFILE.name}
             </span>
-            <span className="hidden sm:inline text-[10px] px-2 py-0.5 bg-white/10 text-slate-400">
+            <span className="hidden sm:inline text-[10px] px-2 py-0.5 bg-white/10 text-amber-300">
               C++ • OPENGL • BLENDER • UE5 • AI
             </span>
           </div>
 
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-2 font-mono">
             <button
               onClick={handlePrint}
-              className="flex items-center gap-1.5 px-3 py-1.5 bg-white/5 hover:bg-white/10 border border-white/10 text-xs font-mono text-slate-300 hover:text-white transition-colors cursor-pointer"
+              className="flex items-center gap-1.5 px-3 py-1.5 bg-white/5 hover:bg-white/10 border border-white/10 text-xs text-slate-300 hover:text-white transition-colors cursor-pointer"
               title="Print Resume"
             >
               <Printer className="w-3.5 h-3.5" />
@@ -102,7 +104,7 @@ ${PROJECTS.map(p => `
             </button>
             <button
               onClick={handleDownload}
-              className="flex items-center gap-1.5 px-3 py-1.5 bg-amber-500/20 hover:bg-amber-500/30 border border-amber-500/40 text-xs font-mono text-amber-300 transition-colors cursor-pointer"
+              className="flex items-center gap-1.5 px-3 py-1.5 bg-amber-500/20 hover:bg-amber-500/30 border border-amber-500/40 text-xs text-amber-300 transition-colors cursor-pointer"
               title="Download Verified Resume Text"
             >
               <Download className="w-3.5 h-3.5" />
@@ -113,7 +115,7 @@ ${PROJECTS.map(p => `
                 SoundEngine.playClick();
                 setResumeModalOpen(false);
               }}
-              className="p-1.5 text-slate-400 hover:text-white hover:bg-white/10 ml-2"
+              className="p-1.5 text-slate-400 hover:text-white hover:bg-white/10 ml-2 cursor-pointer"
               aria-label="Close modal"
             >
               <X className="w-5 h-5" />
@@ -126,20 +128,21 @@ ${PROJECTS.map(p => `
           {/* Header Identity */}
           <div className="border-b border-white/10 pb-6 flex flex-col sm:flex-row sm:items-end justify-between gap-4">
             <div>
-              <h1 className="text-2xl sm:text-3xl font-black tracking-tight text-white font-mono">
+              <h1 className="text-2xl sm:text-4xl font-black tracking-tight text-white font-tech">
                 {PROFILE.name}
               </h1>
-              <p className="text-amber-400 font-mono text-sm tracking-wide mt-1">
+              <p className="text-amber-400 font-mono text-sm tracking-wide mt-1 font-bold">
                 {PROFILE.primaryTitle}
               </p>
-              <p className="text-slate-400 text-xs mt-1">
-                {PROFILE.institution} — {PROFILE.degree}
+              <p className="text-slate-300 text-xs mt-1 font-mono">
+                {PROFILE.degree}
               </p>
             </div>
             <div className="font-mono text-xs text-slate-400 space-y-1 sm:text-right">
+              <div>Email: <a href={`mailto:${PROFILE.links.email}`} className="text-amber-300 hover:underline">{PROFILE.links.email}</a></div>
+              <div>LinkedIn: <a href={PROFILE.links.linkedin} target="_blank" rel="noreferrer" className="text-cyan-400 hover:underline">sairam-r-7900b136b</a></div>
               <div>GitHub: <a href={PROFILE.links.github} target="_blank" rel="noreferrer" className="text-white hover:underline">{PROFILE.handle}</a></div>
               <div>Location: {PROFILE.coordinates.label}</div>
-              <div>Status: Available for Technical Art / Graphics Roles</div>
             </div>
           </div>
 
@@ -151,6 +154,17 @@ ${PROJECTS.map(p => `
             </h2>
             <p className="text-slate-300 text-sm leading-relaxed">
               {PROFILE.bio}
+            </p>
+          </div>
+
+          {/* Real-time Video Reels */}
+          <div className="p-4 bg-black/60 border border-amber-500/30 space-y-2">
+            <h3 className="text-xs font-mono tracking-widest text-amber-400 uppercase font-bold">
+              REAL-TIME ENVIRONMENT WALKTHROUGHS
+            </h3>
+            <p className="text-xs text-slate-300 leading-relaxed font-sans">
+              • <strong>LifeSupport Room:</strong> Cinematic sci-fi industrial chamber with dynamic emissive conduits and volumetric lighting.<br />
+              • <strong>Movie_009 Environment Reel:</strong> Real-time walkthrough featuring modular assets, trim sheets, and Lumen GI.
             </p>
           </div>
 
@@ -230,7 +244,7 @@ ${PROJECTS.map(p => `
             </h2>
             <div className="p-4 bg-white/5 border border-white/10 space-y-1 text-xs">
               <div className="font-bold text-white text-sm font-mono flex items-center justify-between">
-                <span>{SYNTRIX_DATA.name} DEVELOPER COLLECTIVE</span>
+                <span>{SYNTRIX_DATA.name} DEVELOPER COLLECTIVE (FOUNDED OUTSIDE COLLEGE)</span>
                 <span className="text-amber-400">{SYNTRIX_DATA.memberCount}</span>
               </div>
               <p className="text-slate-400 font-mono">{SYNTRIX_DATA.founderRole} — {SYNTRIX_DATA.cadence}</p>
@@ -268,7 +282,7 @@ ${PROJECTS.map(p => `
 
         {/* Footer actions */}
         <div className="px-6 py-3 bg-[#111726] border-t border-white/10 flex items-center justify-between text-xs font-mono text-slate-400">
-          <span>VERIFIED ACCURACY: 0 FABRICATIONS // GENUINE ARTIFACTS ONLY</span>
+          <span>VERIFIED ACCURACY: SAIRAM R // GENUINE DATA ONLY</span>
           <button
             onClick={() => setResumeModalOpen(false)}
             className="text-white hover:text-amber-400 underline cursor-pointer"

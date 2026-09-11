@@ -35,10 +35,10 @@ export function InteractiveTimeline() {
               <Compass className="w-3.5 h-3.5" />
               <span>THE EVOLUTIONARY TRAJECTORY</span>
             </div>
-            <h2 className="text-4xl sm:text-6xl font-black text-white tracking-tight uppercase">
+            <h2 className="text-4xl sm:text-6xl font-black text-white tracking-tight uppercase font-tech">
               ABOUT <span className="text-slate-500 font-light">& TIMELINE</span>
             </h2>
-            <p className="text-slate-400 max-w-2xl text-sm sm:text-base leading-relaxed">
+            <p className="text-slate-400 max-w-2xl text-sm sm:text-base leading-relaxed font-sans">
               Not a passive résumé narrative. An interactive chronological ledger detailing the evolution from 
               foundational low-level systems programming to AAA-grade environment art and real-time graphics engineering.
             </p>
@@ -47,7 +47,7 @@ export function InteractiveTimeline() {
           <div className="font-mono text-xs text-slate-400 bg-black/60 p-3 border border-white/10 space-y-0.5 text-right">
             <span className="text-white font-bold block">{PROFILE.name}</span>
             <span className="text-amber-400 block">{PROFILE.degree}</span>
-            <span className="text-slate-500 block">{PROFILE.institution}</span>
+            <span className="text-slate-500 block">COIMBATORE, TN // IN</span>
           </div>
         </div>
 
@@ -65,7 +65,7 @@ export function InteractiveTimeline() {
                 }`}
               >
                 <div className="text-[10px] text-slate-500 mb-1">0{index + 1} // ERA</div>
-                <div className="text-amber-400 font-bold text-xs tracking-wider mb-1">{node.tag}</div>
+                <div className="text-amber-400 font-bold text-xs tracking-wider mb-1 font-dot">{node.tag}</div>
                 <div className="text-white text-xs font-bold font-sans line-clamp-1">{node.title}</div>
                 <span className={`text-[9px] inline-block px-1.5 py-0.2 mt-2 border ${
                   node.status === "CURRENT" ? "border-emerald-500 text-emerald-300 bg-emerald-500/10" : "border-white/10 text-slate-400"
@@ -85,10 +85,10 @@ export function InteractiveTimeline() {
                   <span>//</span>
                   <span>{activeNode.badge}</span>
                 </div>
-                <h3 className="text-2xl sm:text-3xl font-black text-white tracking-tight mt-1 font-sans">
+                <h3 className="text-2xl sm:text-3xl font-black text-white tracking-tight mt-1 font-tech">
                   {activeNode.title}
                 </h3>
-                <p className="text-xs text-slate-400 mt-0.5">
+                <p className="text-xs text-slate-400 mt-0.5 font-sans">
                   {activeNode.subtitle}
                 </p>
               </div>

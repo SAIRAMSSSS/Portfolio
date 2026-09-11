@@ -14,7 +14,8 @@ import {
   CheckCircle,
   Network,
   Image as ImageIcon,
-  Maximize2
+  Maximize2,
+  Globe
 } from "lucide-react";
 
 export function SyntrixSection() {
@@ -31,13 +32,23 @@ export function SyntrixSection() {
           <div className="space-y-3">
             <div className="flex items-center gap-2 font-mono text-xs text-amber-400 tracking-widest uppercase">
               <Users className="w-3.5 h-3.5" />
-              <span>LEADERSHIP & DEVELOPER ECOSYSTEM</span>
+              <span>INDEPENDENT DEVELOPER COMMUNITY FOUNDED OUTSIDE COLLEGE</span>
             </div>
-            <h2 className="text-4xl sm:text-6xl font-black text-white tracking-tight uppercase">
-              SYNTRIX <span className="text-slate-500 font-light">COLLECTIVE</span>
-            </h2>
-            <p className="text-slate-400 max-w-2xl text-sm sm:text-base leading-relaxed">
-              {SYNTRIX_DATA.tagline} Founded alongside close friends to foster a culture of active building, 
+            <div className="flex items-center gap-4">
+              {/* Official Logo */}
+              <div className="w-12 h-12 bg-black border border-white/20 p-1.5 shadow-xl flex items-center justify-center shrink-0">
+                <img
+                  src={SYNTRIX_DATA.logoImage}
+                  alt="Syntrix Official Logo"
+                  className="w-full h-full object-contain"
+                />
+              </div>
+              <h2 className="text-4xl sm:text-6xl font-black text-white tracking-tight uppercase font-tech">
+                SYNTRIX <span className="text-slate-500 font-light">COLLECTIVE</span>
+              </h2>
+            </div>
+            <p className="text-slate-400 max-w-2xl text-sm sm:text-base leading-relaxed font-sans">
+              {SYNTRIX_DATA.tagline} Founded outside college alongside close friends to foster a culture of active building, 
               live screen-share debugging, and competitive hackathon teamwork.
             </p>
           </div>
@@ -54,7 +65,7 @@ export function SyntrixSection() {
           </div>
         </div>
 
-        {/* Visual Community Banner Artifact & Mission */}
+        {/* Visual Community Artifacts & Mission */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
           {/* Left: Banner Presentation Card */}
           <div className="lg:col-span-5 flex flex-col justify-between blueprint-box p-6 bg-[#060a14] space-y-4">
@@ -88,15 +99,15 @@ export function SyntrixSection() {
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent flex items-end p-4">
                 <div className="flex items-center justify-between w-full font-mono text-xs text-white">
-                  <span>CLICK TO VIEW HIGH-RES</span>
+                  <span>CLICK TO VIEW HIGH-RES BANNER</span>
                   <Maximize2 className="w-4 h-4 text-amber-400" />
                 </div>
               </div>
             </div>
 
-            <div className="font-mono text-[10px] text-slate-500 border-t border-white/10 pt-2 flex justify-between">
-              <span>CO-FOUNDER & TECH LEAD: SAIRAM S</span>
-              <span>CADENCE: WEEKLY ONLINE</span>
+            <div className="font-mono text-[10px] text-slate-400 border-t border-white/10 pt-2 flex items-center justify-between">
+              <span className="text-white font-bold">CO-FOUNDER: SAIRAM R</span>
+              <span className="text-amber-400">INDEPENDENT COMMUNITY</span>
             </div>
           </div>
 
@@ -104,9 +115,9 @@ export function SyntrixSection() {
           <div className="lg:col-span-7 flex flex-col justify-between space-y-6">
             <div className="blueprint-box p-6 sm:p-8 bg-[#060913] space-y-4">
               <span className="font-mono text-xs text-amber-400 uppercase tracking-widest font-bold block">
-                THE FOUNDING ETHOS // WHY WE BUILT SYNTRIX
+                THE FOUNDING ETHOS // OUTSIDE COLLEGE COLLECTIVE
               </span>
-              <p className="text-slate-300 text-sm sm:text-base leading-relaxed">
+              <p className="text-slate-300 text-sm sm:text-base leading-relaxed font-sans">
                 {SYNTRIX_DATA.mission}
               </p>
             </div>
@@ -173,7 +184,7 @@ export function SyntrixSection() {
                 }`}
               >
                 <div className="text-[10px] text-slate-500 mb-1">0{index + 1} // NODE</div>
-                <div className="text-white font-bold text-sm tracking-wider mb-1">{node.label}</div>
+                <div className="text-white font-bold text-sm tracking-wider mb-1 font-tech">{node.label}</div>
                 <div className="text-[10px] text-amber-300/80 font-sans">{node.role}</div>
 
                 {index < 5 && (
@@ -208,7 +219,7 @@ export function SyntrixSection() {
           <div className="relative max-w-2xl w-full bg-black border border-white/20 p-2">
             <button
               onClick={() => setBannerModal(false)}
-              className="absolute top-4 right-4 bg-black/80 hover:bg-white/20 text-white p-2 border border-white/20 font-mono text-xs"
+              className="absolute top-4 right-4 bg-black/80 hover:bg-white/20 text-white p-2 border border-white/20 font-mono text-xs cursor-pointer"
             >
               CLOSE [ESC]
             </button>

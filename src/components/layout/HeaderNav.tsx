@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from "react";
 import { useDuality } from "@/context/DualityContext";
 import { SoundEngine } from "@/components/audio/SoundEffects";
+import { PROFILE } from "@/data/profile";
 import { 
   Terminal, 
   Volume2, 
@@ -12,7 +13,9 @@ import {
   FileText, 
   Compass,
   Menu,
-  X
+  X,
+  Play,
+  Activity
 } from "lucide-react";
 
 export function HeaderNav() {
@@ -30,7 +33,6 @@ export function HeaderNav() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState<boolean>(false);
   const [timeStr, setTimeStr] = useState<string>("");
 
-  // Live FPS and local time counter
   useEffect(() => {
     let frameCount = 0;
     let lastTime = performance.now();
@@ -62,13 +64,13 @@ export function HeaderNav() {
 
   const navLinks = [
     { label: "WORK", href: "#projects", id: "projects" },
-    { label: "ART", href: "#environment-art", id: "art" },
-    { label: "LAB", href: "#rendering-lab", id: "lab" },
-    { label: "AI", href: "#intelligence-lab", id: "ai" },
+    { label: "ENV_REEL", href: "#environment-art", id: "art" },
+    { label: "GL_LAB", href: "#rendering-lab", id: "lab" },
+    { label: "AI_TENSORS", href: "#intelligence-lab", id: "ai" },
     { label: "BATTLE_LOG", href: "#hackathons", id: "hackathons" },
     { label: "SYNTRIX", href: "#syntrix", id: "syntrix" },
-    { label: "THINKING", href: "#philosophy", id: "philosophy" },
-    { label: "CONTACT", href: "#contact", id: "contact" }
+    { label: "PHILOSOPHY", href: "#philosophy", id: "philosophy" },
+    { label: "TRANSMIT", href: "#contact", id: "contact" }
   ];
 
   const handleNavClick = (href: string) => {
@@ -81,25 +83,25 @@ export function HeaderNav() {
   };
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 bg-[#05070a]/85 backdrop-blur-md border-b border-white/10 text-xs font-mono select-none">
+    <header className="fixed top-0 left-0 right-0 z-50 bg-[#040609]/90 backdrop-blur-md border-b border-white/10 text-xs font-mono select-none">
       {/* Top Telemetry Strip */}
       <div className="hidden lg:flex items-center justify-between px-6 py-1 border-b border-white/5 text-[10px] text-slate-500 tracking-wider">
         <div className="flex items-center gap-4">
           <span className="flex items-center gap-1.5 text-slate-400">
-            <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
-            ONLINE // SYS_ID: SAIRAM_01
+            <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+            OPERATOR: SAIRAM R // ARCH_KERNEL_6.x
           </span>
-          <span className="text-slate-600">|</span>
-          <span>LAT: 11.0168° N, LNG: 76.9558° E [CBE]</span>
-          <span className="text-slate-600">|</span>
-          <span>LOCAL_TIME: {timeStr || "12:00:00"}</span>
+          <span className="text-slate-700">|</span>
+          <span>LAT: 11.0168° N, LNG: 76.9558° E</span>
+          <span className="text-slate-700">|</span>
+          <span className="text-slate-400">CLK: {timeStr || "12:00:00"}</span>
         </div>
         <div className="flex items-center gap-4">
-          <span>RENDER_TARGET: WEBGL2_CORE</span>
-          <span className="text-slate-600">|</span>
-          <span className="text-emerald-400">{fps} FPS</span>
-          <span className="text-slate-600">|</span>
-          <span className="text-amber-400/90">STACK: ART ↔ CODE ↔ GAMES</span>
+          <span className="text-slate-400">ENV: C++ • OPENGL • BLENDER • UE5</span>
+          <span className="text-slate-700">|</span>
+          <span className="text-emerald-400 font-bold">{fps} FPS</span>
+          <span className="text-slate-700">|</span>
+          <span className="text-amber-400">PURSUING BE CSE</span>
         </div>
       </div>
 
@@ -114,27 +116,27 @@ export function HeaderNav() {
               window.scrollTo({ top: 0, behavior: "smooth" });
               SoundEngine.playClick();
             }}
-            className="group flex items-center gap-2 text-slate-200 hover:text-white transition-colors"
+            className="group flex items-center gap-2.5 text-slate-200 hover:text-white transition-colors"
           >
-            <div className="w-7 h-7 bg-white/5 border border-white/20 flex items-center justify-center font-bold text-amber-400 group-hover:border-amber-400 transition-colors">
-              S
+            <div className="w-8 h-8 bg-black border border-white/20 flex items-center justify-center font-bold text-amber-400 group-hover:border-amber-400 transition-colors font-dot text-sm">
+              SR
             </div>
             <div>
-              <div className="font-bold tracking-widest text-sm flex items-center gap-1.5">
-                <span>SAIRAM S</span>
-                <span className="text-[9px] px-1.5 py-0.2 bg-white/10 text-slate-400 rounded-xs">
+              <div className="font-bold tracking-wider text-sm flex items-center gap-2">
+                <span className="text-white font-tech tracking-wider">{PROFILE.name}</span>
+                <span className="text-[9px] px-1.5 py-0.2 bg-white/10 text-amber-300 rounded-xs font-mono">
                   {mode}
                 </span>
               </div>
-              <div className="text-[9px] text-slate-500 tracking-tighter">
-                ENVIRONMENT ARTIST // GRAPHICS PROGRAMMER
+              <div className="text-[9px] text-slate-500 font-mono tracking-tighter">
+                TECHNICAL ENVIRONMENT ARTIST // GRAPHICS PROGRAMMER
               </div>
             </div>
           </a>
         </div>
 
         {/* Center: Navigation Links */}
-        <nav className="hidden xl:flex items-center gap-1 text-[11px]">
+        <nav className="hidden xl:flex items-center gap-1 text-[11px] font-mono">
           {navLinks.map((item) => (
             <button
               key={item.id}
@@ -154,17 +156,17 @@ export function HeaderNav() {
           ))}
         </nav>
 
-        {/* Right: Interactive Controls & Duality Switch */}
+        {/* Right: Controls & Duality Switch */}
         <div className="flex items-center gap-2 sm:gap-3">
           {/* DUALITY MODE TOGGLE */}
           <button
             onClick={toggleMode}
             onMouseEnter={() => SoundEngine.playHover()}
             title="Toggle Art vs Code Perspective"
-            className={`flex items-center gap-1.5 px-2.5 py-1.5 border text-[11px] font-semibold tracking-wider transition-all cursor-pointer ${
+            className={`flex items-center gap-1.5 px-3 py-1.5 border text-[11px] font-semibold tracking-wider transition-all cursor-pointer font-mono ${
               mode === "ART"
-                ? "border-amber-500/60 bg-amber-500/10 text-amber-400 hover:bg-amber-500/20"
-                : "border-cyan-500/60 bg-cyan-500/10 text-cyan-400 hover:bg-cyan-500/20"
+                ? "border-amber-500/60 bg-amber-500/10 text-amber-300 hover:bg-amber-500/20 shadow-sm"
+                : "border-cyan-500/60 bg-cyan-500/10 text-cyan-300 hover:bg-cyan-500/20 shadow-sm"
             }`}
           >
             {mode === "ART" ? (
@@ -178,7 +180,7 @@ export function HeaderNav() {
                 <span className="hidden sm:inline">CODE MODE</span>
               </>
             )}
-            <span className="text-[9px] opacity-60">⇄</span>
+            <span className="text-[10px] opacity-60">⇄</span>
           </button>
 
           {/* Terminal Launcher */}
@@ -188,8 +190,8 @@ export function HeaderNav() {
               setTerminalOpen(true);
             }}
             onMouseEnter={() => SoundEngine.playHover()}
-            title="Launch Interactive Terminal (`~`)"
-            className="flex items-center gap-1 px-2 py-1.5 border border-white/10 hover:border-white/30 text-slate-300 hover:text-white transition-colors bg-white/5 cursor-pointer"
+            title="Launch Terminal (`~`)"
+            className="flex items-center gap-1.5 px-2.5 py-1.5 border border-white/15 hover:border-white/35 text-slate-300 hover:text-white transition-colors bg-white/5 cursor-pointer font-mono"
           >
             <Terminal className="w-3.5 h-3.5 text-emerald-400" />
             <span className="hidden md:inline text-[10px]">TERM [~]</span>
@@ -199,8 +201,8 @@ export function HeaderNav() {
           <button
             onClick={toggleAudio}
             onMouseEnter={() => SoundEngine.playHover()}
-            title={audioMuted ? "Unmute Audio FX" : "Mute Audio FX"}
-            className="p-2 border border-white/10 hover:border-white/30 text-slate-400 hover:text-white transition-colors bg-white/5 cursor-pointer"
+            title={audioMuted ? "Unmute Audio Feedback" : "Mute Audio"}
+            className="p-2 border border-white/15 hover:border-white/35 text-slate-400 hover:text-white transition-colors bg-white/5 cursor-pointer"
             aria-label="Toggle Audio"
           >
             {audioMuted ? (
@@ -217,7 +219,7 @@ export function HeaderNav() {
               setResumeModalOpen(true);
             }}
             onMouseEnter={() => SoundEngine.playHover()}
-            className="hidden sm:flex items-center gap-1.5 px-3 py-1.5 bg-white/10 hover:bg-white/20 border border-white/20 text-white font-medium text-[11px] tracking-wider transition-colors cursor-pointer"
+            className="hidden sm:flex items-center gap-1.5 px-3 py-1.5 bg-white/10 hover:bg-white/20 border border-white/25 text-white font-medium text-[11px] tracking-wider transition-colors cursor-pointer font-mono"
           >
             <FileText className="w-3 h-3 text-amber-400" />
             <span>RESUME</span>
@@ -234,9 +236,9 @@ export function HeaderNav() {
         </div>
       </div>
 
-      {/* Mobile Navigation Drawer */}
+      {/* Mobile Drawer */}
       {mobileMenuOpen && (
-        <div className="xl:hidden bg-[#0a0d14] border-b border-white/10 px-6 py-4 space-y-2">
+        <div className="xl:hidden bg-[#070a12] border-b border-white/10 px-6 py-4 space-y-2 font-mono">
           {navLinks.map((item) => (
             <button
               key={item.id}

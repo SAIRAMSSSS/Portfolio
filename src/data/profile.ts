@@ -13,7 +13,6 @@ export interface ProfileData {
     lat: string;
     lng: string;
   };
-  institution: string;
   degree: string;
   links: {
     github: string;
@@ -30,7 +29,7 @@ export interface ProfileData {
 }
 
 export const PROFILE: ProfileData = {
-  name: "SAIRAM S",
+  name: "SAIRAM R",
   handle: "SAIRAMSSSS",
   primaryTitle: "Environment Artist / Graphics Programmer / Technical Builder",
   roles: [
@@ -55,23 +54,22 @@ export const PROFILE: ProfileData = {
   subTagline: "Environment Art · Graphics Programming · Game Development · AI",
   status: [
     "Vulkan Pipeline & Shader Architecture",
-    "Unreal Engine 5 Modular Hero Kit",
+    "Unreal Engine 5 LifeSupport Environment Reel",
     "C++ Real-Time Rendering Testbed",
     "Sub-D Topology & Texel Density Optimization",
     "PBR Shader Mathematics & Raymarching"
   ],
-  bio: "A builder who exists in the tension between code, art, and technology. Pursuing Computer Science Engineering while engineering real-time graphics pipelines, crafting AAA-grade modular 3D environments, architecting decoupled C++ game systems, and leading a 250+ member developer collective.",
+  bio: "A builder who exists in the tension between code, art, and technology. Pursuing B.E. Computer Science Engineering while engineering real-time graphics pipelines, crafting AAA-grade modular 3D environments, architecting decoupled C++ game systems, and leading Syntrix, an independent 250+ member developer collective outside college.",
   coordinates: {
     label: "COIMBATORE, TN // IN",
     lat: "11.0168° N",
     lng: "76.9558° E"
   },
-  institution: "Kathir College of Engineering",
-  degree: "B.E. Computer Science and Engineering",
+  degree: "Pursuing B.E. Computer Science Engineering",
   links: {
     github: "https://github.com/SAIRAMSSSS",
-    linkedin: "https://www.linkedin.com/in/[ADD_LINKEDIN]",
-    email: "sairam.portfolio@example.com",
+    linkedin: "https://www.linkedin.com/in/sairam-r-7900b136b/",
+    email: "sairam2k6proff@gmail.com",
     resume: "#resume"
   },
   stats: {

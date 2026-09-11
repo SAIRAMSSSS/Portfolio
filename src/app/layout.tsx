@@ -1,19 +1,8 @@
 import type { Metadata, Viewport } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
-
 export const viewport: Viewport = {
-  themeColor: "#05070a",
+  themeColor: "#040609",
   width: "device-width",
   initialScale: 1,
   maximumScale: 5,
@@ -21,10 +10,10 @@ export const viewport: Viewport = {
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://sairam.dev"),
-  title: "SAIRAM S // Environment Artist & Graphics Programmer",
-  description: "Portfolio of Sairam S: A builder who exists between code, art, and technology. C++, OpenGL 4.6, Vulkan, Unreal Engine 5, Blender, Substance, AI/ML, and 50+ Hackathons.",
+  title: "SAIRAM R // Technical Environment Artist & Graphics Programmer",
+  description: "Portfolio of Sairam R: A builder who exists between code, art, and technology. C++, OpenGL 4.6, Vulkan, Unreal Engine 5, Blender, Substance, AI/ML, and 50+ Hackathons. Co-founder of Syntrix community.",
   keywords: [
-    "Sairam S",
+    "Sairam R",
     "Environment Artist",
     "Graphics Programmer",
     "Technical Artist",
@@ -37,18 +26,18 @@ export const metadata: Metadata = {
     "Game Systems",
     "Syntrix"
   ],
-  authors: [{ name: "Sairam S", url: "https://github.com/SAIRAMSSSS" }],
+  authors: [{ name: "Sairam R", url: "https://github.com/SAIRAMSSSS" }],
   openGraph: {
-    title: "SAIRAM S // Environment Artist & Graphics Programmer",
+    title: "SAIRAM R // Technical Environment Artist & Graphics Programmer",
     description: "I build worlds and the systems that run them. Art ↔ Code ↔ Games.",
     url: "https://github.com/SAIRAMSSSS",
-    siteName: "Sairam S Digital Portfolio",
+    siteName: "Sairam R Digital Portfolio",
     images: [
       {
-        url: "/images/art/block_beauty.png",
+        url: "/videos/lifesupport_poster.jpg",
         width: 1280,
         height: 720,
-        alt: "Sairam S Portfolio 3D Asset Preview",
+        alt: "Sairam R Real-Time Environment Walkthrough",
       },
     ],
     locale: "en_US",
@@ -66,11 +55,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html
-      lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} dark scroll-smooth`}
-    >
-      <body className="bg-[#05070a] text-slate-100 min-h-screen font-sans antialiased overflow-x-hidden selection:bg-amber-500/30 selection:text-white">
+    <html lang="en" className="dark scroll-smooth">
+      <body className="bg-[#040609] text-slate-100 min-h-screen antialiased overflow-x-hidden selection:bg-amber-500/30 selection:text-white font-tech">
         {children}
       </body>
     </html>

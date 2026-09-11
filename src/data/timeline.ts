@@ -17,7 +17,7 @@ export const TIMELINE_DATA: TimelineNode[] = [
     tag: "ORIGIN",
     era: "FOUNDATIONS",
     title: "Computer Science & Systems Thinking",
-    subtitle: "Kathir College of Engineering (B.E. CSE)",
+    subtitle: "Pursuing B.E. Computer Science Engineering",
     description: "Immersed in core computer science disciplines: data structures, algorithmic complexity, memory management, operating system architectures, and procedural logic in C and C++.",
     keyMilestones: [
       "Built low-level systems prototypes and memory benchmarks.",
@@ -52,9 +52,9 @@ export const TIMELINE_DATA: TimelineNode[] = [
     subtitle: "Crafting Worlds & the Engines Behind Them",
     description: "Harmonizing AAA environment art workflows with raw graphics programming. Sculpting high-poly assets in Blender, authoring PBR materials in Substance Painter and InstaMAT, and dissecting the rendering pipeline in modern OpenGL and Vulkan.",
     keyMilestones: [
+      "Produced cinematic real-time environment walkthrus: 'LifeSupport Room' and 'Movie_009'.",
       "Created 'LANTERN' hero prop and modular environment blockouts.",
-      "Constructed raw C++ OpenGL 4.6 rendering engine with custom GLSL shaders and MVP matrices.",
-      "Achieving seamless workflow between DCC tools (Blender/Substance) and real-time game engines (UE5)."
+      "Constructed raw C++ OpenGL 4.6 rendering engine with custom GLSL shaders and MVP matrices."
     ],
     techFocus: ["Blender 5.x", "Substance Painter", "InstaMAT", "Unreal Engine 5", "OpenGL 4.6", "GLSL", "Vulkan"],
     status: "CURRENT",
@@ -81,10 +81,10 @@ export const TIMELINE_DATA: TimelineNode[] = [
     tag: "COMMUNITY",
     era: "COLLECTIVE IMPACT",
     title: "Syntrix Developer Collective",
-    subtitle: "Founding a Builder-Centric Community",
-    description: "Co-founded Syntrix with close friends to unite builders passionate about systems, graphics, and hackathons. Grew the collective to ~250 members with vibrant weekly technical voice sessions.",
+    subtitle: "Independent Builder Community Founded Outside College",
+    description: "Co-founded Syntrix outside college with close friends to unite passionate builders around systems, 3D graphics, and hackathons. Grew the collective to ~250 members with vibrant weekly technical voice sessions.",
     keyMilestones: [
-      "Built a self-sustaining network of ~250 technical builders.",
+      "Built an independent developer collective of ~250 technical builders outside college.",
       "Hosted consistent weekly voice meetups with 20+ active participants sharing screens.",
       "Mentored junior engineers and fielded cross-disciplinary squads for national hackathons."
     ],

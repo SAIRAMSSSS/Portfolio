@@ -20,7 +20,7 @@ export function SystemTerminalModal() {
   const [history, setHistory] = useState<string[]>([]);
   const [historyIdx, setHistoryIdx] = useState<number>(-1);
   const [logs, setLogs] = useState<LogEntry[]>([
-    { type: "system", text: "SYS_KERNEL_INIT: SAIRAM WORKSTATION v4.6 [ARCH / LINUX]" },
+    { type: "system", text: "SYS_KERNEL_INIT: SAIRAM R WORKSTATION v4.6 [ARCH / LINUX]" },
     { type: "system", text: "Identity: Environment Artist ↔ Graphics Programmer ↔ Technical Builder" },
     { type: "system", text: "Type 'help' to inspect command registry or 'whoami' for operator profile." }
   ]);
@@ -59,13 +59,14 @@ export function SystemTerminalModal() {
           text: [
             "AVAILABLE COMMANDS:",
             "  whoami       - Display identity, roles & background",
+            "  reels        - List cinematic environment video walkthroughs",
             "  projects     - List visual project artifacts (001 - 005)",
             "  cat <num>    - Read project manifest (e.g. 'cat 001', 'cat 002')",
             "  art          - Inspect environment art & PBR workflow",
             "  graphics     - Review modern OpenGL & Vulkan rendering lab",
             "  ai           - Machine learning & tensor experiments",
             "  hackathons   - Display 50+ hackathon battle log & podiums",
-            "  syntrix      - Explore Syntrix 250-member developer community",
+            "  syntrix      - Explore Syntrix community founded outside college",
             "  duality      - Toggle ART MODE ↔ CODE MODE perspective",
             "  resume       - Open full verified resume manifest",
             "  sys          - Neofetch-style system and graphics hardware telemetry",
@@ -83,10 +84,21 @@ export function SystemTerminalModal() {
             `NAME: ${PROFILE.name} (${PROFILE.handle})`,
             `TITLE: ${PROFILE.primaryTitle}`,
             `PHILOSOPHY: "${PROFILE.tagline}"`,
-            `EDUCATION: ${PROFILE.degree} @ ${PROFILE.institution}`,
+            `STATUS: ${PROFILE.degree}`,
             `LOCATION: ${PROFILE.coordinates.label} [${PROFILE.coordinates.lat}, ${PROFILE.coordinates.lng}]`,
             `INTERSECTION: ART ↔ CODE ↔ GAMES`,
-            `COMMUNITY: Co-Founder of Syntrix (~250 members)`
+            `COMMUNITY: Co-Founder of Syntrix (~250 members founded outside college)`
+          ].join("\n")
+        });
+        break;
+
+      case "reels":
+        newLogs.push({
+          type: "output",
+          text: [
+            "REAL-TIME ENVIRONMENT VIDEO WALKTHROUGHS:",
+            "  1. LifeSupport Room (LifeSupportRoom.mp4) - Sci-fi industrial chamber, dynamic volumetric fog, Lumen indirect lighting.",
+            "  2. Movie_009 Reel (Movie_009.mp4) - Modular trim sheets, structural piping, real-time camera flythrough."
           ].join("\n")
         });
         break;
@@ -185,8 +197,10 @@ export function SystemTerminalModal() {
           text: [
             `COMMUNITY: ${SYNTRIX_DATA.name}`,
             `ROLE: ${SYNTRIX_DATA.founderRole}`,
+            `FOUNDED: Outside college with close friends`,
             `MEMBERS: ${SYNTRIX_DATA.memberCount}`,
             `CADENCE: ${SYNTRIX_DATA.cadence} (${SYNTRIX_DATA.weeklyVoiceAttendees})`,
+            `LOGO: s_logo.png (Integrated)`,
             `MISSION: ${SYNTRIX_DATA.mission}`,
             `PIPELINE: People → Ideas → Projects → Hackathons → Collaboration → Community`
           ].join("\n")
@@ -227,8 +241,8 @@ export function SystemTerminalModal() {
         newLogs.push({
           type: "output",
           text: [
-            "       _.-'''''''-._       sairam@workstation",
-            "     .'  .-------.  '.     ------------------",
+            "       _.-'''''''-._       sairam_r@workstation",
+            "     .'  .-------.  '.     --------------------",
             "    /   /         \\   \\    OS: CachyOS Linux x86_64",
             "   |   |   ART     |   |   Host: Dual Intel/NVIDIA Precision Lab",
             "   |   |    ↔      |   |   Kernel: 6.x Linux Realtime",
@@ -237,7 +251,7 @@ export function SystemTerminalModal() {
             "     '.  '-------'  .'     Graphics API: OpenGL 4.6 / Vulkan 1.3",
             "       '-........-'        DCC: Blender 5.2.1 LTS / Substance",
             "                           Engine: Unreal Engine 5.4 / Custom C++",
-            "                           Community: Syntrix (~250 Engineers)",
+            "                           Community: Syntrix (~250 Builders outside college)",
             "                           Hackathons: 50+ Completed"
           ].join("\n")
         });
@@ -248,9 +262,9 @@ export function SystemTerminalModal() {
           type: "output",
           text: [
             "COMMUNICATION CHANNELS:",
-            `  • GitHub:   ${PROFILE.links.github}`,
-            `  • LinkedIn: ${PROFILE.links.linkedin}`,
             `  • Email:    ${PROFILE.links.email}`,
+            `  • LinkedIn: ${PROFILE.links.linkedin}`,
+            `  • GitHub:   ${PROFILE.links.github}`,
             "  • Terminal: Active session initialized"
           ].join("\n")
         });
@@ -310,8 +324,8 @@ export function SystemTerminalModal() {
         <div className="flex items-center justify-between px-4 py-2.5 bg-[#0e1320] border-b border-white/10 text-slate-400 select-none">
           <div className="flex items-center gap-2">
             <TerminalIcon className="w-4 h-4 text-emerald-400" />
-            <span className="font-semibold text-white tracking-wider">
-              SAIRAM_SYS_CONSOLE // [TTY1]
+            <span className="font-semibold text-white tracking-wider font-tech">
+              SAIRAM_R_SYS_CONSOLE // [TTY1]
             </span>
             <span className="text-[10px] px-1.5 py-0.5 bg-emerald-500/20 text-emerald-400 rounded-xs">
               ONLINE
@@ -326,7 +340,7 @@ export function SystemTerminalModal() {
                 SoundEngine.playClick();
                 setTerminalOpen(false);
               }}
-              className="p-1 hover:text-white text-slate-400 hover:bg-white/10 rounded-xs"
+              className="p-1 hover:text-white text-slate-400 hover:bg-white/10 rounded-xs cursor-pointer"
               aria-label="Close terminal"
             >
               <X className="w-4 h-4" />
@@ -360,7 +374,7 @@ export function SystemTerminalModal() {
 
         {/* Terminal Input Line */}
         <div className="flex items-center gap-2 px-4 py-3 bg-[#0a0e18] border-t border-white/10">
-          <span className="text-emerald-400 font-bold">sairam@lab:~$</span>
+          <span className="text-emerald-400 font-bold">sairam_r@lab:~$</span>
           <input
             ref={inputRef}
             type="text"
@@ -368,12 +382,12 @@ export function SystemTerminalModal() {
             onChange={(e) => setInput(e.target.value)}
             onKeyDown={handleKeyDown}
             className="flex-1 bg-transparent border-none outline-hidden text-white font-mono text-xs placeholder:text-slate-600"
-            placeholder="Type 'help', 'whoami', 'projects', 'art', 'graphics'..."
+            placeholder="Type 'help', 'whoami', 'reels', 'projects', 'art', 'graphics'..."
             autoFocus
           />
           <button
             onClick={() => handleCommand(input)}
-            className="px-2 py-1 bg-white/10 hover:bg-white/20 text-slate-300 hover:text-white text-[10px] uppercase font-bold"
+            className="px-2 py-1 bg-white/10 hover:bg-white/20 text-slate-300 hover:text-white text-[10px] uppercase font-bold cursor-pointer"
           >
             EXEC
           </button>

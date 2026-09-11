@@ -6,6 +6,7 @@ export interface SyntrixCommunityData {
   weeklyVoiceAttendees: string;
   cadence: string;
   bannerImage: string;
+  logoImage: string;
   mission: string;
   pillars: {
     title: string;
@@ -32,13 +33,14 @@ export interface SyntrixCommunityData {
 
 export const SYNTRIX_DATA: SyntrixCommunityData = {
   name: "SYNTRIX",
-  tagline: "A developer community built to connect people who love technology and relentless building.",
+  tagline: "An independent developer community founded outside college for builders who live between code, art, and systems.",
   founderRole: "Co-Founder & Technical Community Lead",
   memberCount: "~250 Members",
   weeklyVoiceAttendees: "20+ Active Participants",
   cadence: "Weekly Live Technical Voice Meetups",
   bannerImage: "/images/syntrix/syntix_flex.png",
-  mission: "Syntrix was founded alongside close friends to dismantle the isolation of solitary coding. We created a high-signal environment where builders showcase works-in-progress, dissect low-level systems, form competitive hackathon squads, and exchange raw technical feedback.",
+  logoImage: "/images/syntrix/s_logo_optimized.png",
+  mission: "Syntrix was founded outside college alongside close friends to break the isolation of solitary coding. We created a high-signal environment where builders showcase works-in-progress, dissect low-level systems, form competitive hackathon squads, and exchange raw technical feedback.",
   pillars: [
     {
       title: "PEER TECHNICAL SCRUTINY",
@@ -60,9 +62,9 @@ export const SYNTRIX_DATA: SyntrixCommunityData = {
     {
       id: "people",
       label: "PEOPLE",
-      role: "Curious Builders",
+      role: "Independent Builders",
       connections: ["ideas"],
-      details: "250+ passionate students, indie game devs, and systems programmers seeking high-signal engineering peers."
+      details: "250+ passionate students, indie game devs, and systems programmers seeking high-signal engineering peers outside institutional boundaries."
     },
     {
       id: "ideas",
