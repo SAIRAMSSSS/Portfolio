@@ -350,38 +350,37 @@ export function SystemTerminalModal() {
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm">
-      <div className="relative w-full max-w-4xl h-[620px] bg-[#03060c] border border-cyan-500/40 shadow-2xl flex flex-col font-mono text-xs overflow-hidden">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/70 backdrop-blur-sm">
+      <div className="relative w-full max-w-3xl h-[560px] bg-[#0c0c0e] border border-white/[0.12] rounded-lg shadow-2xl flex flex-col font-mono text-xs overflow-hidden">
         {/* Terminal Header Bar */}
-        <div className="flex items-center justify-between px-4 py-2.5 bg-[#060b14] border-b border-white/10 select-none">
-          <div className="flex items-center gap-2 text-cyan-300 font-bold">
-            <TerminalIcon className="w-4 h-4 text-cyan-400" />
-            <span>TERMINAL_SYS // {PROFILE.handle}@workstation: ~</span>
+        <div className="flex items-center justify-between px-4 py-3 bg-[#111114] border-b border-white/[0.08] select-none">
+          <div className="flex items-center gap-2 text-neutral-300 font-medium">
+            <TerminalIcon className="w-3.5 h-3.5 text-neutral-400" />
+            <span>terminal — {PROFILE.handle}@workstation: ~</span>
           </div>
 
-          <div className="flex items-center gap-2">
-            <button
-              onClick={() => setTerminalOpen(false)}
-              className="p-1 hover:bg-white/10 text-slate-400 hover:text-white transition-colors cursor-pointer"
-              title="Close terminal (Esc)"
-            >
-              <X className="w-4 h-4" />
-            </button>
-          </div>
+          <button
+            onClick={() => setTerminalOpen(false)}
+            className="p-1 hover:bg-white/10 text-neutral-400 hover:text-white rounded transition-colors cursor-pointer"
+            title="Close (Esc)"
+          >
+            <X className="w-4 h-4" />
+          </button>
         </div>
 
         {/* Logs Stream */}
-        <div className="flex-1 p-4 overflow-y-auto space-y-2 font-mono text-[11px] sm:text-xs">
+        <div className="flex-1 p-4 overflow-y-auto space-y-2 font-mono text-xs">
           {logs.map((log, idx) => (
             <div key={idx} className="leading-relaxed">
               {log.type === "input" && (
-                <div className="text-white font-bold flex items-center gap-1.5">
-                  <span className="text-emerald-400">root@sairam:~$</span>
+                <div className="text-white font-medium flex items-center gap-1.5">
+                  <span className="text-neutral-500">~</span>
+                  <span className="text-emerald-400">$</span>
                   <span>{log.text.replace(/^\$\s*/, "")}</span>
                 </div>
               )}
               {log.type === "output" && (
-                <pre className="text-slate-300 whitespace-pre-wrap font-mono mt-0.5 pl-3 border-l-2 border-cyan-500/30">
+                <pre className="text-neutral-300 whitespace-pre-wrap font-mono mt-0.5 pl-3 border-l border-white/[0.1]">
                   {log.text}
                 </pre>
               )}
@@ -401,16 +400,17 @@ export function SystemTerminalModal() {
         </div>
 
         {/* Prompt Input Row */}
-        <div className="px-4 py-3 bg-[#020408] border-t border-white/10 flex items-center gap-2">
-          <span className="text-emerald-400 font-bold">root@sairam:~$</span>
+        <div className="px-4 py-3 bg-[#111114] border-t border-white/[0.08] flex items-center gap-2">
+          <span className="text-neutral-500">~</span>
+          <span className="text-emerald-400 font-bold">$</span>
           <input
             ref={inputRef}
             type="text"
             value={input}
             onChange={(e) => setInput(e.target.value)}
             onKeyDown={handleKeyDown}
-            placeholder="Type 'help', 'projects', 'direction', 'toolkit', 'approach'..."
-            className="flex-1 bg-transparent text-white outline-none placeholder-slate-600 font-mono text-xs"
+            placeholder="help, projects, direction, toolkit, approach, exit..."
+            className="flex-1 bg-transparent text-white outline-none placeholder-neutral-600 font-mono text-xs"
             autoFocus
           />
         </div>

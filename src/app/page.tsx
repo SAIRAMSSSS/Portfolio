@@ -1,75 +1,85 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import { DualityProvider } from "@/context/DualityContext";
 import { HeaderNav } from "@/components/layout/HeaderNav";
 import { HeroSection } from "@/components/hero/HeroSection";
-import { CurrentDirectionSection } from "@/components/direction/CurrentDirectionSection";
 import { ProjectArchive } from "@/components/projects/ProjectArchive";
+import { CurrentDirectionSection } from "@/components/direction/CurrentDirectionSection";
 import { TechStackEcosystem } from "@/components/tech/TechStackEcosystem";
 import { HowIThink } from "@/components/philosophy/HowIThink";
 import { BuildingTowardSection } from "@/components/trajectory/BuildingTowardSection";
+import { ContactSection } from "@/components/contact/ContactSection";
+import { SystemTerminalModal } from "@/components/terminal/SystemTerminalModal";
+import { ResumeModal } from "@/components/resume/ResumeModal";
 import { RenderingLab } from "@/components/graphics/RenderingLab";
 import { IntelligenceLab } from "@/components/ai/IntelligenceLab";
 import { HackathonBattleLog } from "@/components/hackathons/HackathonBattleLog";
 import { SyntrixSection } from "@/components/community/SyntrixSection";
-import { EnvironmentArtShowcase } from "@/components/art/EnvironmentArtShowcase";
-import { InteractiveTimeline } from "@/components/about/InteractiveTimeline";
-import { ContactSection } from "@/components/contact/ContactSection";
-import { SystemTerminalModal } from "@/components/terminal/SystemTerminalModal";
-import { ResumeModal } from "@/components/resume/ResumeModal";
+import { ChevronDown, ChevronUp } from "lucide-react";
 
 export default function HomePage() {
+  const [showExtendedLabs, setShowExtendedLabs] = useState(false);
+
   return (
     <DualityProvider>
-      <main className="relative min-h-screen bg-[#040609] text-slate-100 flex flex-col">
-        {/* Persistent Tactical HUD Header */}
+      <div className="min-h-screen bg-[#0a0a0b] text-neutral-100 flex flex-col font-sans selection:bg-white/20 selection:text-white">
+        {/* Minimal Navigation */}
         <HeaderNav />
 
-        {/* Cinematic Hero Section with 3D WebGL Canvas */}
-        <HeroSection />
+        <main className="flex-1">
+          {/* Hero */}
+          <HeroSection />
 
-        {/* 01 / CURRENT DIRECTION: Primary DevOps & AI, Long-term Graphics */}
-        <CurrentDirectionSection />
+          {/* Selected Projects */}
+          <ProjectArchive />
 
-        {/* 02 / SELECTED PROJECTS: REMoWser, REMoAINTER, REMoErminal */}
-        <ProjectArchive />
+          {/* Direction */}
+          <CurrentDirectionSection />
 
-        {/* 03 / ENGINEERING TOOLKIT: Used in Projects vs Currently Developing */}
-        <TechStackEcosystem />
+          {/* Toolkit */}
+          <TechStackEcosystem />
 
-        {/* 04 / HOW I APPROACH ENGINEERING: 4 Core Operational Axioms */}
-        <HowIThink />
+          {/* Approach */}
+          <HowIThink />
 
-        {/* 05 / WHAT I'M BUILDING TOWARD: DevOps/Infra Target & Hardware Profiling */}
-        <BuildingTowardSection />
+          {/* Building Toward */}
+          <BuildingTowardSection />
 
-        {/* Specialized Interactive Labs & Evidence */}
-        {/* The Rendering Lab (C++, OpenGL 4.6, Shaders) */}
-        <RenderingLab />
+          {/* Optional Extended Engineering Labs (OpenGL, AI Tensors, Hackathons, Syntrix) */}
+          <section className="py-12 border-b border-white/[0.08]">
+            <div className="max-w-4xl mx-auto px-6">
+              <button
+                onClick={() => setShowExtendedLabs(!showExtendedLabs)}
+                className="inline-flex items-center gap-2 text-xs font-mono text-neutral-400 hover:text-neutral-200 transition-colors cursor-pointer"
+              >
+                <span>
+                  {showExtendedLabs
+                    ? "Hide interactive labs & community archives"
+                    : "Explore interactive labs & community archives (OpenGL 4.6, PyTorch Lab, Syntrix, Hackathons)"}
+                </span>
+                {showExtendedLabs ? <ChevronUp className="w-3.5 h-3.5" /> : <ChevronDown className="w-3.5 h-3.5" />}
+              </button>
+            </div>
 
-        {/* Intelligence Lab (PyTorch, NumPy, Loss Convergence) */}
-        <IntelligenceLab />
+            {showExtendedLabs && (
+              <div className="mt-8 space-y-12">
+                <RenderingLab />
+                <IntelligenceLab />
+                <HackathonBattleLog />
+                <SyntrixSection />
+              </div>
+            )}
+          </section>
 
-        {/* Hackathon Battle Log (50+ Sprints & Podiums) */}
-        <HackathonBattleLog />
+          {/* Elsewhere & Contact */}
+          <ContactSection />
+        </main>
 
-        {/* Syntrix Community Leadership (~250 Members) */}
-        <SyntrixSection />
-
-        {/* Environment Art & Long-Term 3D Technology */}
-        <EnvironmentArtShowcase />
-
-        {/* Evolutionary Timeline */}
-        <InteractiveTimeline />
-
-        {/* 06 / ELSEWHERE & Direct Communications Transmission */}
-        <ContactSection />
-
-        {/* Interactive Modals & Terminal Engine */}
+        {/* Modals & CLI Terminal */}
         <SystemTerminalModal />
         <ResumeModal />
-      </main>
+      </div>
     </DualityProvider>
   );
 }
