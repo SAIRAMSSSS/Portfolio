@@ -82,7 +82,7 @@ export function ContactSection() {
             &ldquo;{PROFILE.motto}&rdquo;
           </p>
           <div className="text-xs text-neutral-400 font-mono">
-            {PROFILE.name} · {PROFILE.coordinates.label}
+            {PROFILE.name} · Software Systems & Infrastructure
           </div>
         </div>
       </div>

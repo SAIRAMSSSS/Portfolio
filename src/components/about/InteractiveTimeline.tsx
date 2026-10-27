@@ -47,7 +47,7 @@ export function InteractiveTimeline() {
           <div className="font-mono text-xs text-slate-400 bg-black/60 p-3 border border-white/10 space-y-0.5 text-right">
             <span className="text-white font-bold block">{PROFILE.name}</span>
             <span className="text-amber-400 block">{PROFILE.degree}</span>
-            <span className="text-slate-500 block">COIMBATORE, TN // IN</span>
+            <span className="text-slate-500 block">SYSTEMS &amp; INFRASTRUCTURE</span>
           </div>
         </div>
 

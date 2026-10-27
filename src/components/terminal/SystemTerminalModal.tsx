@@ -97,15 +97,15 @@ export function SystemTerminalModal() {
         newLogs.push({
           type: "output",
           text: [
-            "01 / CURRENT DIRECTION:",
-            "  PRIMARY TRACK    : DevOps, Cloud & Infrastructure Engineering",
-            "                     Focus: Linux, Docker, CI/CD pipelines, Kubernetes, deployment reliability.",
+            "CURRENT FOCUS & SIDE QUEST:",
+            "  [CURRENTLY DOING] DevOps, Cloud & Infrastructure Engineering",
+            "                    Focus: Linux kernel, Docker containers, CI/CD pipelines, Kubernetes, reliability.",
             "",
-            "  SECONDARY TRACK  : AI Systems, PyTorch & GPU Computing",
-            "                     Focus: Ollama local models, browser agents, CUDA fundamentals, tensor benchmarking.",
+            "  [CURRENTLY DOING] AI Systems, PyTorch & GPU Computing",
+            "                    Focus: Ollama local models, browser automation agents, CUDA profiling, tensor benchmarks.",
             "",
-            "  LONG-TERM TRACK  : C++, Graphics Programming, Vulkan & Game Technology",
-            "                     Focus: C++20, Rust, Vulkan API, shaders, game state machines.",
+            "  [SIDE QUEST]      C++, Graphics Programming, OpenGL & Game Development",
+            "                    Focus: C++20, Rust, Vulkan API, OpenGL 4.6, shaders, decoupled state machines.",
             "",
             `OBJECTIVE: "${PROFILE.currentDirection.objective}"`
           ].join("\n")
@@ -158,22 +158,19 @@ export function SystemTerminalModal() {
         newLogs.push({
           type: "output",
           text: [
-            "03 / ENGINEERING TOOLKIT:",
+            "ENGINEERING TOOLKIT:",
             "",
-            "USED IN PROJECTS & PRACTICAL EXPERIMENTS:",
-            "  • Languages : C++, Python, JavaScript/TypeScript, Rust",
-            "  • Systems   : Linux, Git, CMake, command-line workflows",
-            "  • Containers: Docker fundamentals",
-            "  • App Dev   : React, Next.js, Django, PostgreSQL",
-            "  • Graphics  : OpenGL 4.6, Vulkan exploration, shaders & 3D workflows",
+            "DEVOPS & INFRASTRUCTURE:",
+            "  • Linux, Docker (multi-stage), CI/CD pipelines, Kubernetes, monitoring & reliability.",
             "",
-            "CURRENTLY DEVELOPING:",
-            "  • CI/CD and automated build-and-test pipelines",
-            "  • Kubernetes, cloud infrastructure and infrastructure as code",
-            "  • Monitoring, logging and deployment reliability",
-            "  • PyTorch, CUDA fundamentals and GPU performance measurement",
+            "AI SYSTEMS & COMPUTING:",
+            "  • PyTorch, local LLMs (Ollama), CUDA benchmarks, browser automation (Playwright), NumPy.",
             "",
-            "NOTE: Technologies already used in projects are not the same as technologies currently being learned."
+            "SIDE QUEST (GRAPHICS & SYSTEMS):",
+            "  • C++20, Rust, Vulkan, OpenGL 4.6, GLSL shaders, SDL3, CMakePresets.",
+            "",
+            "CORE APPLICATION & LANGUAGES:",
+            "  • Python, Rust, C++, JavaScript/TypeScript, React, Next.js, Django, PostgreSQL, Git."
           ].join("\n")
         });
         break;

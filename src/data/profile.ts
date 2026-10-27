@@ -12,7 +12,7 @@ export interface ProfileData {
   currentDirection: {
     objective: string;
     tracks: {
-      tier: "Primary" | "Secondary" | "Long-term";
+      category: "Currently Doing" | "Side Quest";
       track: string;
       focus: string;
       statusBadge: string;
@@ -96,33 +96,33 @@ export const PROFILE: ProfileData = {
     "Automated CI/CD Build-and-Test Validation Suites",
     "PyTorch & CUDA Hardware Performance Measurement"
   ],
-  bio: "I build practical software tools, explore how systems work under the hood, and turn experiments into reproducible projects. Currently focused on Linux, Docker, deployment workflows, infrastructure automation, and the foundations of AI systems and GPU computing. Graphics programming and game technology remain long-term interests.",
+  bio: "I build practical software tools, explore how systems work under the hood, and turn experiments into reproducible projects. Currently doing DevOps, Cloud & Infrastructure Engineering and AI Systems, PyTorch & GPU Computing. C++, Graphics Programming, OpenGL, and game development as a side quest.",
   motto: "Learn the fundamentals. Build the system. Measure the result. Document the evidence.",
   currentDirection: {
-    objective: "The objective is simple: understand systems beyond the surface level — how software is built, deployed, automated, monitored, and executed on real hardware.",
+    objective: "Understand systems beyond the surface level — how software is built, containerized, automated, monitored, and executed on real hardware.",
     tracks: [
       {
-        tier: "Primary",
+        category: "Currently Doing",
         track: "DevOps, Cloud & Infrastructure Engineering",
-        focus: "Linux internals, containerization (Docker/containerd), CI/CD pipelines, automated testing, deployment reliability, monitoring & recovery.",
+        focus: "Linux internals, containerization (Docker), CI/CD pipelines, automated testing, deployment reliability, monitoring & recovery.",
         statusBadge: "ACTIVE FOCUS",
         description: "Building reproducible infrastructure where setup is automated, environments are containerized, tests run continuously, and systems recover predictably from failure.",
-        tools: ["Linux", "Docker", "Git Workflows", "CI/CD", "Kubernetes (Developing)", "IaC Fundamentals"]
+        tools: ["Linux", "Docker", "Git Workflows", "CI/CD", "Kubernetes", "IaC Fundamentals"]
       },
       {
-        tier: "Secondary",
+        category: "Currently Doing",
         track: "AI Systems, PyTorch & GPU Computing",
         focus: "Local language model pipelines (Ollama), browser automation agents, tensor operations, CUDA fundamentals & GPU benchmark instrumentation.",
-        statusBadge: "ACTIVE RESEARCH",
+        statusBadge: "ACTIVE FOCUS",
         description: "Demystifying deep learning execution: measuring how models interact with hardware, optimizing tensor throughput, and connecting local intelligence to real-world software workflows.",
         tools: ["Python", "PyTorch", "CUDA Fundamentals", "Ollama", "Playwright", "NumPy"]
       },
       {
-        tier: "Long-term",
-        track: "C++, Graphics Programming, Vulkan & Game Technology",
-        focus: "Modern C++20, Rust systems programming, Vulkan rendering architecture, shaders, memory allocators & decoupled game state machines.",
-        statusBadge: "EXPLORATION & EXPERIMENTS",
-        description: "Exploring the bleeding edge of real-time interactive computation: GPU hardware abstraction, custom framebuffers, cross-platform terminal engines, and high-performance graphics.",
+        category: "Side Quest",
+        track: "C++, Graphics Programming, OpenGL & Game Development",
+        focus: "Modern C++20, Rust systems programming, Vulkan & OpenGL rendering architectures, shaders, memory allocators & game state machines.",
+        statusBadge: "SIDE QUEST",
+        description: "Exploring low-level graphics and systems programming: GPU hardware abstraction, custom framebuffers, cross-platform terminal engines, and real-time shader pipelines.",
         tools: ["C++20", "Rust", "Vulkan", "OpenGL 4.6", "SDL3", "CMake", "GLSL"]
       }
     ]
@@ -182,7 +182,7 @@ export const PROFILE: ProfileData = {
     }
   },
   coordinates: {
-    label: "COIMBATORE, TN // IN",
+    label: "UTC+5:30 // ASIA",
     lat: "11.0168° N",
     lng: "76.9558° E"
   },

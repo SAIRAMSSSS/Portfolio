@@ -309,7 +309,7 @@ export const HACKATHON_LOGS: HackathonEntry[] = [
   {
     id: "hack-030",
     code: "HACK_030",
-    title: "Algorithm Battles Coimbatore",
+    title: "Algorithm Battles Regional Hackathon",
     organizer: "Competitive Coding Guild",
     category: "COLLEGIATE",
     placement: "Top 8 Finalist",

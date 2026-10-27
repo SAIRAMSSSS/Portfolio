@@ -32,7 +32,7 @@ export function HeroSection() {
               I build practical software tools, explore how systems work under the hood, and turn experiments into reproducible projects.
             </p>
             <p className="text-neutral-400 text-sm sm:text-base">
-              Currently focused on <span className="text-neutral-200">Linux, Docker, deployment workflows, infrastructure automation, and the foundations of AI systems and GPU computing</span>. Graphics programming and game technology remain long-term interests.
+              Currently doing <span className="text-neutral-200">DevOps, Cloud &amp; Infrastructure Engineering</span> and <span className="text-neutral-200">AI Systems, PyTorch &amp; GPU Computing</span>. C++, Graphics Programming, OpenGL, and game development as a <span className="text-neutral-300 italic">side quest</span>.
             </p>
           </div>
 

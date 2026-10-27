@@ -12,9 +12,10 @@ export function HeaderNav() {
 
   const navLinks = [
     { label: "Projects", href: "#projects" },
-    { label: "Toolkit", href: "#toolkit" },
-    { label: "Approach", href: "#approach" },
     { label: "Direction", href: "#direction" },
+    { label: "Toolkit", href: "#toolkit" },
+    { label: "Workbench", href: "#workbench" },
+    { label: "Approach", href: "#approach" },
     { label: "Contact", href: "#elsewhere" },
   ];
 
