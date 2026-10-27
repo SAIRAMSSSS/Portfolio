@@ -1,52 +1,6 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="100%" height="100%">
-  <defs>
-    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#080c16"/>
-      <stop offset="100%" stop-color="#020409"/>
-    </linearGradient>
-    <linearGradient id="amber" x1="0%" y1="0%" x2="0%" y2="100%">
-      <stop offset="0%" stop-color="#fef08a"/>
-      <stop offset="40%" stop-color="#f59e0b"/>
-      <stop offset="100%" stop-color="#b45309"/>
-    </linearGradient>
-    <linearGradient id="cyan" x1="0%" y1="0%" x2="0%" y2="100%">
-      <stop offset="0%" stop-color="#e0f2fe"/>
-      <stop offset="40%" stop-color="#38bdf8"/>
-      <stop offset="100%" stop-color="#0284c7"/>
-    </linearGradient>
-    <linearGradient id="border" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#f59e0b"/>
-      <stop offset="50%" stop-color="#22d3ee"/>
-      <stop offset="100%" stop-color="#0284c7"/>
-    </linearGradient>
-  </defs>
-
-  <!-- Dark Base Squircle -->
-  <rect x="2" y="2" width="60" height="60" rx="14" fill="url(#bg)" stroke="url(#border)" stroke-width="2.2"/>
-
-  <!-- 3D Graphics Wireframe Cage (OpenGL / Vulkan Topology) -->
-  <polygon points="32,6 56,19 32,32 8,19" fill="none" stroke="#1e293b" stroke-width="1.2" stroke-opacity="0.7"/>
-  <line x1="8" y1="19" x2="8" y2="45" stroke="#1e293b" stroke-width="1.2" stroke-opacity="0.7"/>
-  <line x1="32" y1="32" x2="32" y2="58" stroke="#1e293b" stroke-width="1.2" stroke-opacity="0.7"/>
-  <line x1="56" y1="19" x2="56" y2="45" stroke="#1e293b" stroke-width="1.2" stroke-opacity="0.7"/>
-  <polygon points="8,45 32,58 56,45" fill="none" stroke="#1e293b" stroke-width="1.2" stroke-opacity="0.7"/>
-
-  <!-- Luminous Vertex Nodes -->
-  <circle cx="32" cy="6" r="2" fill="#f59e0b"/>
-  <circle cx="8" cy="19" r="2" fill="#38bdf8"/>
-  <circle cx="56" cy="19" r="2" fill="#f59e0b"/>
-  <circle cx="8" cy="45" r="1.6" fill="#1e293b"/>
-  <circle cx="56" cy="45" r="1.6" fill="#1e293b"/>
-  <circle cx="32" cy="58" r="2" fill="#00f0ff"/>
-
-  <!-- Monogram S (Art & Warm Environment) -->
-  <path d="M30 18 H17 L13 22 V27 L17 31 H26 L30 35 V42 L26 46 H13" 
-        fill="none" stroke="url(#amber)" stroke-width="5.4" stroke-linecap="round" stroke-linejoin="round"/>
-
-  <!-- Monogram R (Code & Graphics Shaders) -->
-  <path d="M35.5 46 V18 H45 L49.5 22.5 V27.5 L45 32 H35.5 M43.5 32 L51 46" 
-        fill="none" stroke="url(#cyan)" stroke-width="5.4" stroke-linecap="round" stroke-linejoin="round"/>
-
-  <!-- Center Duality Core Sparkle / Node -->
-  <circle cx="32.75" cy="31" r="1.6" fill="#ffffff"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <rect width="64" height="64" rx="14" fill="#09090b"/>
+  <rect x="0.75" y="0.75" width="62.5" height="62.5" rx="13.25" fill="none" stroke="#27272a" stroke-width="1.5"/>
+  <path d="M30.56 19.70 27.40 23.43Q24.67 21.26 21.66 21.26Q20.11 21.26 19.29 21.85Q18.47 22.44 18.47 23.50Q18.47 24.26 18.89 24.76Q19.31 25.25 20.30 25.71Q21.28 26.16 23.41 26.85Q27.48 28.14 29.36 30.09Q31.24 32.05 31.24 35.51Q31.24 38.02 29.95 39.94Q28.66 41.86 26.20 42.92Q23.75 43.98 20.45 43.98Q14.14 43.98 10.15 40.15L13.61 36.31Q16.76 38.89 20.18 38.89Q21.97 38.89 22.96 38.11Q23.94 37.33 23.94 36.04Q23.94 35.13 23.56 34.54Q23.18 33.95 22.22 33.48Q21.25 33.00 19.38 32.43Q14.9 31.03 13.08 29.05Q11.25 27.07 11.25 24.07Q11.25 21.72 12.53 19.93Q13.80 18.14 16.06 17.17Q18.32 16.21 21.13 16.21Q24.13 16.21 26.43 17.08Q28.73 17.95 30.56 19.70Z" fill="#f4f4f5"/>
+  <path d="M41.5 33.57H39.56V43.3H32.53V16.89H41.69Q47.28 16.89 50.03 18.90Q52.79 20.92 52.79 25.10Q52.79 27.61 51.63 29.28Q50.47 30.95 47.92 32.28L54.50 43.3H46.67ZM39.56 28.78H41.92Q45.57 28.78 45.57 25.10Q45.57 23.39 44.56 22.59Q43.55 21.79 41.54 21.79H39.56Z" fill="#f4f4f5"/>
 </svg>
