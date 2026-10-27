@@ -9,24 +9,31 @@ export const viewport: Viewport = {
 };
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://sairam.dev"),
-  title: "SAIRAM R // Technical Environment Artist & Graphics Programmer",
-  description: "Portfolio of Sairam R: A builder who exists between code, art, and technology. C++, OpenGL 4.6, Vulkan, Unreal Engine 5, Blender, Substance, AI/ML, and 50+ Hackathons. Co-founder of Syntrix community.",
+  metadataBase: new URL("https://portfolio-gamma-ten-1m75emxn99.vercel.app"),
+  title: "SAI RAM R // DevOps & Infrastructure · Software Systems · AI/GPU Computing",
+  description: "Portfolio of Sai Ram R: Practical software tools, reproducible systems, Linux, Docker, deployment workflows, AI/GPU computing, and low-level graphics.",
   keywords: [
+    "Sai Ram R",
     "Sairam R",
-    "Environment Artist",
-    "Graphics Programmer",
-    "Technical Artist",
-    "OpenGL",
+    "DevOps",
+    "Infrastructure Engineering",
+    "Cloud Infrastructure",
+    "Docker",
+    "Linux",
+    "CI/CD",
+    "AI Systems",
+    "GPU Computing",
+    "PyTorch",
+    "CUDA",
+    "C++20",
+    "Rust",
     "Vulkan",
-    "Unreal Engine 5",
-    "Blender",
-    "Substance Painter",
-    "C++",
-    "Game Systems",
+    "REMoWser",
+    "REMoAINTER",
+    "REMoErminal",
     "Syntrix"
   ],
-  authors: [{ name: "Sairam R", url: "https://github.com/SAIRAMSSSS" }],
+  authors: [{ name: "Sai Ram R", url: "https://github.com/SAIRAMSSSS" }],
   icons: {
     icon: [
       { url: "/icon.svg", type: "image/svg+xml" },
@@ -35,18 +42,10 @@ export const metadata: Metadata = {
     apple: "/apple-icon.png",
   },
   openGraph: {
-    title: "SAIRAM R // Technical Environment Artist & Graphics Programmer",
-    description: "I build worlds and the systems that run them. Art ↔ Code ↔ Games.",
-    url: "https://github.com/SAIRAMSSSS",
-    siteName: "Sairam R Digital Portfolio",
-    images: [
-      {
-        url: "/videos/lifesupport_poster.jpg",
-        width: 1280,
-        height: 720,
-        alt: "Sairam R Real-Time Environment Walkthrough",
-      },
-    ],
+    title: "SAI RAM R // DevOps & Infrastructure · Software Systems · AI/GPU Computing",
+    description: "I build practical software tools, explore how systems work under the hood, and turn experiments into reproducible projects.",
+    url: "https://portfolio-gamma-ten-1m75emxn99.vercel.app/",
+    siteName: "Sai Ram R Technical Portfolio",
     locale: "en_US",
     type: "website",
   },
@@ -63,7 +62,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className="dark scroll-smooth">
-      <body className="bg-[#040609] text-slate-100 min-h-screen antialiased overflow-x-hidden selection:bg-amber-500/30 selection:text-white font-tech">
+      <body className="bg-[#040609] text-slate-100 min-h-screen antialiased overflow-x-hidden selection:bg-emerald-500/30 selection:text-white font-tech">
         {children}
       </body>
     </html>

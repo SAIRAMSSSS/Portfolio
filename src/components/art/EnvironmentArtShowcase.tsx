@@ -190,7 +190,7 @@ export function EnvironmentArtShowcase() {
                   }`}
                 >
                   <span className="text-amber-400">{`0${idx + 1}`}</span>
-                  <span>//</span>
+                  <span>{"//"}</span>
                   <span>{reel.id === "LIFESUPPORT" ? "LIFESUPPORT ROOM" : "MOVIE_009"}</span>
                 </button>
               ))}
@@ -217,7 +217,7 @@ export function EnvironmentArtShowcase() {
             <div className="absolute top-4 left-4 bg-black/85 backdrop-blur-md px-3 py-1.5 border border-white/20 font-mono text-[11px] text-amber-300 tracking-wider flex items-center gap-2 pointer-events-none">
               <span className="w-2 h-2 rounded-full bg-emerald-400 animate-ping" />
               <span>STREAM: {activeReel.id === "LIFESUPPORT" ? "LIFESUPPORT_ROOM.MP4" : "MOVIE_009.MP4"}</span>
-              <span className="text-slate-500">//</span>
+              <span className="text-slate-500">{"//"}</span>
               <span className="text-slate-300">REAL-TIME CAPTURE</span>
             </div>
 

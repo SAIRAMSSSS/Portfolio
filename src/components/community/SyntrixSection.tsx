@@ -183,7 +183,7 @@ export function SyntrixSection() {
                     : "border-white/10 bg-black/60 text-slate-400 hover:text-white hover:border-white/30"
                 }`}
               >
-                <div className="text-[10px] text-slate-500 mb-1">0{index + 1} // NODE</div>
+                <div className="text-[10px] text-slate-500 mb-1">0{index + 1} {"//"} NODE</div>
                 <div className="text-white font-bold text-sm tracking-wider mb-1 font-tech">{node.label}</div>
                 <div className="text-[10px] text-amber-300/80 font-sans">{node.role}</div>
 
@@ -200,7 +200,7 @@ export function SyntrixSection() {
           <div className="p-5 bg-black/80 border border-white/15 space-y-2 font-mono text-xs">
             <div className="flex items-center justify-between">
               <span className="text-amber-400 font-bold uppercase tracking-widest">
-                INSPECTING NODE: {activeNodeData.label} // {activeNodeData.role}
+                INSPECTING NODE: {activeNodeData.label} {"//"} {activeNodeData.role}
               </span>
               <span className="text-slate-500 text-[10px]">
                 CONNECTS TO: {activeNodeData.connections.join(", ").toUpperCase()}

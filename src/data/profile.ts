@@ -8,6 +8,38 @@ export interface ProfileData {
   subTagline: string;
   status: string[];
   bio: string;
+  motto: string;
+  currentDirection: {
+    objective: string;
+    tracks: {
+      tier: "Primary" | "Secondary" | "Long-term";
+      track: string;
+      focus: string;
+      statusBadge: string;
+      description: string;
+      tools: string[];
+    }[];
+  };
+  approach: {
+    number: string;
+    title: string;
+    principle: string;
+    detail: string;
+    proof: string;
+  }[];
+  buildingToward: {
+    goal: string;
+    milestone1: {
+      title: string;
+      summary: string;
+      deliverables: string[];
+    };
+    milestone2: {
+      title: string;
+      summary: string;
+      deliverables: string[];
+    };
+  };
   coordinates: {
     label: string;
     lat: string;
@@ -15,6 +47,7 @@ export interface ProfileData {
   };
   degree: string;
   links: {
+    portfolio: string;
     github: string;
     linkedin: string;
     email: string;
@@ -29,37 +62,125 @@ export interface ProfileData {
 }
 
 export const PROFILE: ProfileData = {
-  name: "SAIRAM R",
+  name: "SAI RAM R",
   handle: "SAIRAMSSSS",
-  primaryTitle: "Environment Artist / Graphics Programmer / Technical Builder",
+  primaryTitle: "DevOps & Infrastructure · Software Systems · AI/GPU Computing",
   roles: [
-    "Environment Artist",
-    "Graphics Programmer",
-    "Game Systems Developer",
-    "Technical Artist",
-    "Community Founder"
+    "DevOps & Infrastructure Engineering",
+    "AI Systems & GPU Computing",
+    "Software Systems Developer",
+    "Vulkan & Game Technology Explorer"
   ],
   supportingStack: [
-    "C++",
-    "OpenGL 4.6",
-    "Vulkan",
-    "Unreal Engine 5",
-    "Blender",
-    "Substance Painter",
-    "InstaMAT",
+    "Linux",
+    "Docker",
+    "Kubernetes",
+    "CI/CD Pipelines",
+    "C++20",
+    "Rust",
     "Python",
-    "PyTorch"
+    "PyTorch",
+    "Vulkan",
+    "TypeScript",
+    "Playwright",
+    "SDL3",
+    "CMake"
   ],
-  tagline: "I BUILD WORLDS AND THE SYSTEMS THAT RUN THEM.",
-  subTagline: "Environment Art · Graphics Programming · Game Development · AI",
+  tagline: "I BUILD PRACTICAL SOFTWARE TOOLS, EXPLORE HOW SYSTEMS WORK UNDER THE HOOD, AND TURN EXPERIMENTS INTO REPRODUCIBLE PROJECTS.",
+  subTagline: "DevOps & Infrastructure · Software Systems · AI/GPU Computing",
   status: [
-    "Vulkan Pipeline & Shader Architecture",
-    "Unreal Engine 5 LifeSupport Environment Reel",
-    "C++ Real-Time Rendering Testbed",
-    "Sub-D Topology & Texel Density Optimization",
-    "PBR Shader Mathematics & Raymarching"
+    "Linux & Docker Deployment Automation Workflows",
+    "AI Browser Automation Agent (REMoWser / Ollama)",
+    "Rust & Vulkan 3D Texture Painting Architecture (REMoAINTER)",
+    "C++20 & SDL3 Native Terminal Subsystem (REMoErminal)",
+    "Automated CI/CD Build-and-Test Validation Suites",
+    "PyTorch & CUDA Hardware Performance Measurement"
   ],
-  bio: "A builder who exists in the tension between code, art, and technology. Pursuing B.E. Computer Science Engineering while engineering real-time graphics pipelines, crafting AAA-grade modular 3D environments, architecting decoupled C++ game systems, and leading Syntrix, an independent 250+ member developer collective outside college.",
+  bio: "I build practical software tools, explore how systems work under the hood, and turn experiments into reproducible projects. Currently focused on Linux, Docker, deployment workflows, infrastructure automation, and the foundations of AI systems and GPU computing. Graphics programming and game technology remain long-term interests.",
+  motto: "Learn the fundamentals. Build the system. Measure the result. Document the evidence.",
+  currentDirection: {
+    objective: "The objective is simple: understand systems beyond the surface level — how software is built, deployed, automated, monitored, and executed on real hardware.",
+    tracks: [
+      {
+        tier: "Primary",
+        track: "DevOps, Cloud & Infrastructure Engineering",
+        focus: "Linux internals, containerization (Docker/containerd), CI/CD pipelines, automated testing, deployment reliability, monitoring & recovery.",
+        statusBadge: "ACTIVE FOCUS",
+        description: "Building reproducible infrastructure where setup is automated, environments are containerized, tests run continuously, and systems recover predictably from failure.",
+        tools: ["Linux", "Docker", "Git Workflows", "CI/CD", "Kubernetes (Developing)", "IaC Fundamentals"]
+      },
+      {
+        tier: "Secondary",
+        track: "AI Systems, PyTorch & GPU Computing",
+        focus: "Local language model pipelines (Ollama), browser automation agents, tensor operations, CUDA fundamentals & GPU benchmark instrumentation.",
+        statusBadge: "ACTIVE RESEARCH",
+        description: "Demystifying deep learning execution: measuring how models interact with hardware, optimizing tensor throughput, and connecting local intelligence to real-world software workflows.",
+        tools: ["Python", "PyTorch", "CUDA Fundamentals", "Ollama", "Playwright", "NumPy"]
+      },
+      {
+        tier: "Long-term",
+        track: "C++, Graphics Programming, Vulkan & Game Technology",
+        focus: "Modern C++20, Rust systems programming, Vulkan rendering architecture, shaders, memory allocators & decoupled game state machines.",
+        statusBadge: "EXPLORATION & EXPERIMENTS",
+        description: "Exploring the bleeding edge of real-time interactive computation: GPU hardware abstraction, custom framebuffers, cross-platform terminal engines, and high-performance graphics.",
+        tools: ["C++20", "Rust", "Vulkan", "OpenGL 4.6", "SDL3", "CMake", "GLSL"]
+      }
+    ]
+  },
+  approach: [
+    {
+      number: "01",
+      title: "REPRODUCIBILITY",
+      principle: "Document setup, dependencies, build commands, and expected results.",
+      detail: "If an experiment cannot be rebuilt from scratch with a single command or script, it is not an engineered system. Every repo contains deterministic prerequisites, step-by-step reproduction instructions, and verified environment configs.",
+      proof: "Dockerfiles, CMakePresets, Cargo manifests, and step-by-step verified execution runbooks."
+    },
+    {
+      number: "02",
+      title: "EVIDENCE OVER CLAIMS",
+      principle: "Use tests, benchmarks, screenshots, and working demonstrations to support technical statements.",
+      detail: "No empty buzzwords or unverified production boasts. Every project is accompanied by actual test suites, frame-time latency metrics, automated workflow runs, or live screen recordings.",
+      proof: "Automated test suites, reproducible benchmarks, and video/screenshot evidence."
+    },
+    {
+      number: "03",
+      title: "UNDERSTAND THE SYSTEM",
+      principle: "Investigate architecture, performance, failure modes, and trade-offs.",
+      detail: "Refuse black-box abstractions. Peel back engine wrappers to inspect vertex buffer strides in OpenGL, examine process signaling in Linux terminals, and trace Ollama model token streams across local sockets.",
+      proof: "First-principles architecture breakdowns, latency profiling, and error-boundary isolation."
+    },
+    {
+      number: "04",
+      title: "BUILD TO LEARN",
+      principle: "Prefer small, testable implementations over adding features without a clear purpose.",
+      detail: "Start with a minimal viable core that compiles and tests cleanly. Expand features incrementally under strict version control rather than accumulating unmaintainable speculative complexity.",
+      proof: "Modular decoupled state machines, focused commits, and scoped milestone goals."
+    }
+  ],
+  buildingToward: {
+    goal: "My current priority is to become internship- and job-ready for DevOps, Cloud, Infrastructure, or Platform Engineering roles, while building a strong foundation in AI systems and GPU computing.",
+    milestone1: {
+      title: "Reproducible Infrastructure Project",
+      summary: "Demonstrating a complete production-grade workflow: containerization, automated testing, deployment, monitoring, and documented failure recovery.",
+      deliverables: [
+        "Multi-stage Docker containerization with minimal attack surface",
+        "Automated CI/CD pipeline running lint, unit, and integration tests on pull requests",
+        "Automated deployment script with health checks and zero-downtime rollback",
+        "Prometheus/Grafana or lightweight telemetry for memory and request monitoring",
+        "Documented disaster scenario and verified automated recovery procedure"
+      ]
+    },
+    milestone2: {
+      title: "Hardware Performance Measurement (CPU & GPU)",
+      summary: "Measuring how software performs on CPUs and GPUs, moving from experiments toward a deeper understanding of PyTorch, CUDA, and low-level computing.",
+      deliverables: [
+        "Tensor operation latency and memory bandwidth profiling across CPU vs GPU",
+        "Kernel execution measurement using CUDA profiling tools and PyTorch benchmark utilities",
+        "Comparative evaluation of local inference pipelines (Ollama vs raw quantized models)",
+        "Documented evidence log correlating batch size, precision (FP32/FP16/INT8), and throughput"
+      ]
+    }
+  },
   coordinates: {
     label: "COIMBATORE, TN // IN",
     lat: "11.0168° N",
@@ -67,6 +188,7 @@ export const PROFILE: ProfileData = {
   },
   degree: "Pursuing B.E. Computer Science Engineering",
   links: {
+    portfolio: "https://portfolio-gamma-ten-1m75emxn99.vercel.app/",
     github: "https://github.com/SAIRAMSSSS",
     linkedin: "https://www.linkedin.com/in/sairam-r-7900b136b/",
     email: "sairam2k6proff@gmail.com",

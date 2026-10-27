@@ -20,8 +20,8 @@ export function SystemTerminalModal() {
   const [history, setHistory] = useState<string[]>([]);
   const [historyIdx, setHistoryIdx] = useState<number>(-1);
   const [logs, setLogs] = useState<LogEntry[]>([
-    { type: "system", text: "SYS_KERNEL_INIT: SAIRAM R WORKSTATION v4.6 [ARCH / LINUX]" },
-    { type: "system", text: "Identity: Environment Artist ↔ Graphics Programmer ↔ Technical Builder" },
+    { type: "system", text: "SYS_KERNEL_INIT: SAI RAM R WORKSTATION v5.0 [ARCH / LINUX]" },
+    { type: "system", text: "Identity: DevOps & Infrastructure · Software Systems · AI/GPU Computing" },
     { type: "system", text: "Type 'help' to inspect command registry or 'whoami' for operator profile." }
   ]);
 
@@ -58,19 +58,19 @@ export function SystemTerminalModal() {
           type: "output",
           text: [
             "AVAILABLE COMMANDS:",
-            "  whoami       - Display identity, roles & background",
-            "  reels        - List cinematic environment video walkthroughs",
-            "  projects     - List visual project artifacts (001 - 005)",
+            "  whoami       - Display identity, tracks & current focus",
+            "  direction    - Inspect 01 / CURRENT DIRECTION tracks",
+            "  projects     - List 02 / SELECTED PROJECTS (REMoWser, REMoAINTER, REMoErminal)",
             "  cat <num>    - Read project manifest (e.g. 'cat 001', 'cat 002')",
-            "  art          - Inspect environment art & PBR workflow",
-            "  graphics     - Review modern OpenGL & Vulkan rendering lab",
+            "  toolkit      - Inspect 03 / ENGINEERING TOOLKIT (Used vs Developing)",
+            "  approach     - Review 04 / HOW I APPROACH ENGINEERING (4 Axioms)",
+            "  building     - Inspect 05 / WHAT I'M BUILDING TOWARD (Milestones)",
+            "  contact      - Communications channels (Portfolio, LinkedIn, GitHub, Email)",
+            "  graphics     - Review modern OpenGL 4.6 & Vulkan rendering lab",
             "  ai           - Machine learning & tensor experiments",
             "  hackathons   - Display 50+ hackathon battle log & podiums",
             "  syntrix      - Explore Syntrix community founded outside college",
-            "  duality      - Toggle ART MODE ↔ CODE MODE perspective",
-            "  resume       - Open full verified resume manifest",
-            "  sys          - Neofetch-style system and graphics hardware telemetry",
-            "  contact      - Communications channels (GitHub, Email, LinkedIn)",
+            "  sys          - Neofetch-style system and host telemetry",
             "  clear        - Flush terminal buffer",
             "  exit         - Terminate shell session"
           ].join("\n")
@@ -83,22 +83,31 @@ export function SystemTerminalModal() {
           text: [
             `NAME: ${PROFILE.name} (${PROFILE.handle})`,
             `TITLE: ${PROFILE.primaryTitle}`,
-            `PHILOSOPHY: "${PROFILE.tagline}"`,
+            `BIO: "${PROFILE.bio}"`,
+            `MOTTO: "${PROFILE.motto}"`,
             `STATUS: ${PROFILE.degree}`,
             `LOCATION: ${PROFILE.coordinates.label} [${PROFILE.coordinates.lat}, ${PROFILE.coordinates.lng}]`,
-            `INTERSECTION: ART ↔ CODE ↔ GAMES`,
+            `PRIMARY: DevOps, Cloud & Infrastructure Engineering + AI Systems`,
             `COMMUNITY: Co-Founder of Syntrix (~250 members founded outside college)`
           ].join("\n")
         });
         break;
 
-      case "reels":
+      case "direction":
         newLogs.push({
           type: "output",
           text: [
-            "REAL-TIME ENVIRONMENT VIDEO WALKTHROUGHS:",
-            "  1. LifeSupport Room (LifeSupportRoom.mp4) - Sci-fi industrial chamber, dynamic volumetric fog, Lumen indirect lighting.",
-            "  2. Movie_009 Reel (Movie_009.mp4) - Modular trim sheets, structural piping, real-time camera flythrough."
+            "01 / CURRENT DIRECTION:",
+            "  PRIMARY TRACK    : DevOps, Cloud & Infrastructure Engineering",
+            "                     Focus: Linux, Docker, CI/CD pipelines, Kubernetes, deployment reliability.",
+            "",
+            "  SECONDARY TRACK  : AI Systems, PyTorch & GPU Computing",
+            "                     Focus: Ollama local models, browser agents, CUDA fundamentals, tensor benchmarking.",
+            "",
+            "  LONG-TERM TRACK  : C++, Graphics Programming, Vulkan & Game Technology",
+            "                     Focus: C++20, Rust, Vulkan API, shaders, game state machines.",
+            "",
+            `OBJECTIVE: "${PROFILE.currentDirection.objective}"`
           ].join("\n")
         });
         break;
@@ -107,7 +116,7 @@ export function SystemTerminalModal() {
         newLogs.push({
           type: "output",
           text: PROJECTS.map(
-            (p) => `[PROJECT ${p.number}] ${p.title} // Category: ${p.category}\n  Stack: ${p.techStack.join(", ")}\n  Summary: ${p.summary}`
+            (p) => `[PROJECT ${p.number}] ${p.title}\n  Stack: ${p.techStack.join(" · ")}\n  Summary: ${p.summary}\n  Repo: ${p.githubUrl}`
           ).join("\n\n")
         });
         break;
@@ -124,36 +133,77 @@ export function SystemTerminalModal() {
               `SUBTITLE: ${found.subtitle}`,
               `ROLE: ${found.role}`,
               `TECH: ${found.techStack.join(" • ")}`,
+              `REPO: ${found.githubUrl}`,
               `------------------------------------------------------`,
-              `PROBLEM:`,
-              found.problem,
-              `IDEA:`,
-              found.idea,
-              `RESULT:`,
-              found.result,
+              `SUMMARY:`,
+              found.summary,
+              `KEY FOCUS AREAS:`,
+              ...found.focusAreas.map((f) => `  - ${f}`),
+              `NEXT PRIORITIES:`,
+              ...found.nextPriorities.map((p) => `  - ${p}`),
+              found.reproductionCommand ? `LOCAL RUN: $ ${found.reproductionCommand}` : "",
               `======================================================`
-            ].join("\n")
+            ].filter(Boolean).join("\n")
           });
         } else {
           newLogs.push({
             type: "error",
-            text: `cat: No project found matching '${arg}'. Valid indexes: 001, 002, 003, 004, 005.`
+            text: `cat: No project found matching '${arg}'. Valid indexes: 001, 002, 003, 004, 005, 006, 007.`
           });
         }
         break;
       }
 
-      case "art":
+      case "toolkit":
         newLogs.push({
           type: "output",
           text: [
-            "ENVIRONMENT ART CAPABILITIES:",
-            "  • Subdivision Surface Sculpting & Bevels (Blender 5.x)",
-            "  • Sub-D to Low-Poly Cage Baking (Normals, AO, Curvature, ID maps)",
-            "  • ZenUV Packing & Texel Density Matching (10.24 px/cm)",
-            "  • PBR Smart Material Authoring (Substance Painter & InstaMAT)",
-            "  • Unreal Engine 5 Lumen GI, Nanite & Master Shader Graphs",
-            "  • Featured Asset: LANTERN Hero Environment Asset (8,420 tris)"
+            "03 / ENGINEERING TOOLKIT:",
+            "",
+            "USED IN PROJECTS & PRACTICAL EXPERIMENTS:",
+            "  • Languages : C++, Python, JavaScript/TypeScript, Rust",
+            "  • Systems   : Linux, Git, CMake, command-line workflows",
+            "  • Containers: Docker fundamentals",
+            "  • App Dev   : React, Next.js, Django, PostgreSQL",
+            "  • Graphics  : OpenGL 4.6, Vulkan exploration, shaders & 3D workflows",
+            "",
+            "CURRENTLY DEVELOPING:",
+            "  • CI/CD and automated build-and-test pipelines",
+            "  • Kubernetes, cloud infrastructure and infrastructure as code",
+            "  • Monitoring, logging and deployment reliability",
+            "  • PyTorch, CUDA fundamentals and GPU performance measurement",
+            "",
+            "NOTE: Technologies already used in projects are not the same as technologies currently being learned."
+          ].join("\n")
+        });
+        break;
+
+      case "approach":
+        newLogs.push({
+          type: "output",
+          text: [
+            "04 / HOW I APPROACH ENGINEERING:",
+            "  1. REPRODUCIBILITY   : Document setup, dependencies, build commands, and expected results.",
+            "  2. EVIDENCE OVER CLAIMS: Use tests, benchmarks, screenshots, and demonstrations.",
+            "  3. UNDERSTAND THE SYSTEM: Investigate architecture, performance, failure modes, trade-offs.",
+            "  4. BUILD TO LEARN    : Prefer small, testable implementations over speculative complexity."
+          ].join("\n")
+        });
+        break;
+
+      case "building":
+      case "trajectory":
+        newLogs.push({
+          type: "output",
+          text: [
+            "05 / WHAT I'M BUILDING TOWARD:",
+            `GOAL: "${PROFILE.buildingToward.goal}"`,
+            "",
+            "MILESTONE 01: Reproducible Infrastructure Project",
+            "  Complete production workflow: containerization, automated testing, deployment, monitoring, and failure recovery.",
+            "",
+            "MILESTONE 02: Hardware Performance Measurement (CPU & GPU)",
+            "  Measure software performance on physical CPUs and GPUs (PyTorch, CUDA, tensor throughput)."
           ].join("\n")
         });
         break;
@@ -200,7 +250,6 @@ export function SystemTerminalModal() {
             `FOUNDED: Outside college with close friends`,
             `MEMBERS: ${SYNTRIX_DATA.memberCount}`,
             `CADENCE: ${SYNTRIX_DATA.cadence} (${SYNTRIX_DATA.weeklyVoiceAttendees})`,
-            `LOGO: s_logo.png (Integrated)`,
             `MISSION: ${SYNTRIX_DATA.mission}`,
             `PIPELINE: People → Ideas → Projects → Hackathons → Collaboration → Community`
           ].join("\n")
@@ -215,24 +264,8 @@ export function SystemTerminalModal() {
             "  • PyTorch Neural Network Architectures & Autograd Dynamics",
             "  • Vectorized Math & Preprocessing Pipelines (NumPy & Pandas)",
             "  • Decision Boundaries & Loss Convergence Tracking",
-            "  • Gradient vanishing/exploding mitigation (He/Xavier, BatchNorm)"
+            "  • Local LLM Tool Integration with Ollama in REMoWser"
           ].join("\n")
-        });
-        break;
-
-      case "duality":
-        toggleMode();
-        newLogs.push({
-          type: "system",
-          text: `[SYSTEM] Perspective flipped. Current state: ${mode === "ART" ? "CODE MODE" : "ART MODE"}.`
-        });
-        break;
-
-      case "resume":
-        setResumeModalOpen(true);
-        newLogs.push({
-          type: "system",
-          text: "[SYSTEM] Launching verified resume viewer modal."
         });
         break;
 
@@ -243,29 +276,30 @@ export function SystemTerminalModal() {
           text: [
             "       _.-'''''''-._       sairam_r@workstation",
             "     .'  .-------.  '.     --------------------",
-            "    /   /         \\   \\    OS: CachyOS Linux x86_64",
-            "   |   |   ART     |   |   Host: Dual Intel/NVIDIA Precision Lab",
-            "   |   |    ↔      |   |   Kernel: 6.x Linux Realtime",
-            "   |   |   CODE    |   |   Shell: Bash / Terminal Engine v2",
-            "    \\   \\         /   /    Terminal: WebGL Monospace Canvas",
-            "     '.  '-------'  .'     Graphics API: OpenGL 4.6 / Vulkan 1.3",
-            "       '-........-'        DCC: Blender 5.2.1 LTS / Substance",
-            "                           Engine: Unreal Engine 5.4 / Custom C++",
-            "                           Community: Syntrix (~250 Builders outside college)",
+            "    /   /         \\   \\    OS: Arch / Linux x86_64",
+            "   |   |   DEVOPS  |   |   Host: Dual Intel/NVIDIA Precision Station",
+            "   |   |    & AI   |   |   Kernel: 6.x Linux Realtime",
+            "   |   |  SYSTEMS  |   |   Shell: Bash / Terminal Engine v5",
+            "    \\   \\         /   /    Docker: Active Container Engine",
+            "     '.  '-------'  .'     Graphics: Vulkan 1.3 / OpenGL 4.6",
+            "       '-........-'        Languages: C++20, Rust, Python, TypeScript",
+            "                           Community: Syntrix (~250 Builders)",
             "                           Hackathons: 50+ Completed"
           ].join("\n")
         });
         break;
 
       case "contact":
+      case "elsewhere":
         newLogs.push({
           type: "output",
           text: [
-            "COMMUNICATION CHANNELS:",
-            `  • Email:    ${PROFILE.links.email}`,
-            `  • LinkedIn: ${PROFILE.links.linkedin}`,
-            `  • GitHub:   ${PROFILE.links.github}`,
-            "  • Terminal: Active session initialized"
+            "06 / ELSEWHERE & COMMUNICATIONS:",
+            `  • Portfolio: ${PROFILE.links.portfolio}`,
+            `  • LinkedIn : ${PROFILE.links.linkedin}`,
+            `  • Projects : ${PROFILE.links.github}`,
+            `  • Email    : ${PROFILE.links.email}`,
+            `  • Location : ${PROFILE.coordinates.label}`
           ].join("\n")
         });
         break;
@@ -281,7 +315,7 @@ export function SystemTerminalModal() {
       default:
         newLogs.push({
           type: "error",
-          text: `zsh: command not found: '${cmd}'. Type 'help' for available commands.`
+          text: `Command not recognized: '${cmd}'. Type 'help' to view valid system commands.`
         });
         break;
     }
@@ -291,106 +325,94 @@ export function SystemTerminalModal() {
   };
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    SoundEngine.playTerminalKey();
-
     if (e.key === "Enter") {
       handleCommand(input);
     } else if (e.key === "ArrowUp") {
       e.preventDefault();
       if (history.length > 0) {
-        const nextIdx = historyIdx === -1 ? history.length - 1 : Math.max(0, historyIdx - 1);
-        setHistoryIdx(nextIdx);
-        setInput(history[nextIdx] || "");
-      }
-    } else if (e.key === "ArrowDown") {
-      e.preventDefault();
-      if (historyIdx !== -1) {
         const nextIdx = historyIdx + 1;
         if (nextIdx < history.length) {
           setHistoryIdx(nextIdx);
-          setInput(history[nextIdx]);
-        } else {
-          setHistoryIdx(-1);
-          setInput("");
+          setInput(history[history.length - 1 - nextIdx]);
         }
+      }
+    } else if (e.key === "ArrowDown") {
+      e.preventDefault();
+      if (historyIdx > 0) {
+        const nextIdx = historyIdx - 1;
+        setHistoryIdx(nextIdx);
+        setInput(history[history.length - 1 - nextIdx]);
+      } else if (historyIdx === 0) {
+        setHistoryIdx(-1);
+        setInput("");
       }
     }
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 bg-black/80 backdrop-blur-md">
-      <div className="w-full max-w-3xl h-[85vh] sm:h-[600px] flex flex-col bg-[#080b12] border border-white/20 shadow-2xl font-mono text-xs overflow-hidden relative">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm">
+      <div className="relative w-full max-w-4xl h-[620px] bg-[#03060c] border border-cyan-500/40 shadow-2xl flex flex-col font-mono text-xs overflow-hidden">
         {/* Terminal Header Bar */}
-        <div className="flex items-center justify-between px-4 py-2.5 bg-[#0e1320] border-b border-white/10 text-slate-400 select-none">
-          <div className="flex items-center gap-2">
-            <TerminalIcon className="w-4 h-4 text-emerald-400" />
-            <span className="font-semibold text-white tracking-wider font-tech">
-              SAIRAM_R_SYS_CONSOLE // [TTY1]
-            </span>
-            <span className="text-[10px] px-1.5 py-0.5 bg-emerald-500/20 text-emerald-400 rounded-xs">
-              ONLINE
-            </span>
+        <div className="flex items-center justify-between px-4 py-2.5 bg-[#060b14] border-b border-white/10 select-none">
+          <div className="flex items-center gap-2 text-cyan-300 font-bold">
+            <TerminalIcon className="w-4 h-4 text-cyan-400" />
+            <span>TERMINAL_SYS // {PROFILE.handle}@workstation: ~</span>
           </div>
+
           <div className="flex items-center gap-2">
-            <span className="text-[10px] text-slate-500 hidden sm:inline">
-              ESC or ~ to close
-            </span>
             <button
-              onClick={() => {
-                SoundEngine.playClick();
-                setTerminalOpen(false);
-              }}
-              className="p-1 hover:text-white text-slate-400 hover:bg-white/10 rounded-xs cursor-pointer"
-              aria-label="Close terminal"
+              onClick={() => setTerminalOpen(false)}
+              className="p-1 hover:bg-white/10 text-slate-400 hover:text-white transition-colors cursor-pointer"
+              title="Close terminal (Esc)"
             >
               <X className="w-4 h-4" />
             </button>
           </div>
         </div>
 
-        {/* Terminal Output Body */}
-        <div 
-          onClick={() => inputRef.current?.focus()}
-          className="flex-1 p-4 overflow-y-auto space-y-2 select-text bg-[#05070a]/95 text-slate-200"
-        >
-          {logs.map((log, index) => (
-            <div key={index} className="leading-relaxed whitespace-pre-wrap">
+        {/* Logs Stream */}
+        <div className="flex-1 p-4 overflow-y-auto space-y-2 font-mono text-[11px] sm:text-xs">
+          {logs.map((log, idx) => (
+            <div key={idx} className="leading-relaxed">
               {log.type === "input" && (
-                <span className="text-amber-400 font-bold">{log.text}</span>
+                <div className="text-white font-bold flex items-center gap-1.5">
+                  <span className="text-emerald-400">root@sairam:~$</span>
+                  <span>{log.text.replace(/^\$\s*/, "")}</span>
+                </div>
               )}
               {log.type === "output" && (
-                <span className="text-slate-300">{log.text}</span>
+                <pre className="text-slate-300 whitespace-pre-wrap font-mono mt-0.5 pl-3 border-l-2 border-cyan-500/30">
+                  {log.text}
+                </pre>
               )}
               {log.type === "error" && (
-                <span className="text-rose-400">{log.text}</span>
+                <div className="text-red-400 pl-3 border-l-2 border-red-500/50 mt-0.5">
+                  {log.text}
+                </div>
               )}
               {log.type === "system" && (
-                <span className="text-emerald-400/90">{log.text}</span>
+                <div className="text-emerald-400/90 italic pl-1 text-[11px]">
+                  {log.text}
+                </div>
               )}
             </div>
           ))}
           <div ref={bottomRef} />
         </div>
 
-        {/* Terminal Input Line */}
-        <div className="flex items-center gap-2 px-4 py-3 bg-[#0a0e18] border-t border-white/10">
-          <span className="text-emerald-400 font-bold">sairam_r@lab:~$</span>
+        {/* Prompt Input Row */}
+        <div className="px-4 py-3 bg-[#020408] border-t border-white/10 flex items-center gap-2">
+          <span className="text-emerald-400 font-bold">root@sairam:~$</span>
           <input
             ref={inputRef}
             type="text"
             value={input}
             onChange={(e) => setInput(e.target.value)}
             onKeyDown={handleKeyDown}
-            className="flex-1 bg-transparent border-none outline-hidden text-white font-mono text-xs placeholder:text-slate-600"
-            placeholder="Type 'help', 'whoami', 'reels', 'projects', 'art', 'graphics'..."
+            placeholder="Type 'help', 'projects', 'direction', 'toolkit', 'approach'..."
+            className="flex-1 bg-transparent text-white outline-none placeholder-slate-600 font-mono text-xs"
             autoFocus
           />
-          <button
-            onClick={() => handleCommand(input)}
-            className="px-2 py-1 bg-white/10 hover:bg-white/20 text-slate-300 hover:text-white text-[10px] uppercase font-bold cursor-pointer"
-          >
-            EXEC
-          </button>
         </div>
       </div>
     </div>

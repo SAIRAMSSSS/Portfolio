@@ -8,14 +8,16 @@ import {
   Terminal, 
   Volume2, 
   VolumeX, 
-  Layers, 
-  Code2, 
-  FileText, 
   Compass,
+  Box,
+  Cpu,
+  Workflow,
+  Target,
+  Globe,
   Menu,
   X,
-  Play,
-  Activity
+  Radio,
+  FileText
 } from "lucide-react";
 
 export function HeaderNav() {
@@ -25,8 +27,7 @@ export function HeaderNav() {
     audioMuted, 
     toggleAudio, 
     setTerminalOpen, 
-    setResumeModalOpen,
-    activeSection 
+    setResumeModalOpen 
   } = useDuality();
 
   const [fps, setFps] = useState<number>(60);
@@ -63,14 +64,14 @@ export function HeaderNav() {
   }, []);
 
   const navLinks = [
-    { label: "WORK", href: "#projects", id: "projects" },
-    { label: "ENV_REEL", href: "#environment-art", id: "art" },
-    { label: "GL_LAB", href: "#rendering-lab", id: "lab" },
-    { label: "AI_TENSORS", href: "#intelligence-lab", id: "ai" },
-    { label: "BATTLE_LOG", href: "#hackathons", id: "hackathons" },
-    { label: "SYNTRIX", href: "#syntrix", id: "syntrix" },
-    { label: "PHILOSOPHY", href: "#philosophy", id: "philosophy" },
-    { label: "TRANSMIT", href: "#contact", id: "contact" }
+    { label: "01_DIR", href: "#current-direction" },
+    { label: "02_PROJECTS", href: "#projects" },
+    { label: "03_TOOLKIT", href: "#toolkit" },
+    { label: "04_APPROACH", href: "#approach" },
+    { label: "05_BUILDING", href: "#building-toward" },
+    { label: "06_ELSEWHERE", href: "#elsewhere" },
+    { label: "GL_LAB", href: "#rendering-lab" },
+    { label: "BATTLE_LOG", href: "#hackathons" }
   ];
 
   const handleNavClick = (href: string) => {
@@ -89,7 +90,7 @@ export function HeaderNav() {
         <div className="flex items-center gap-4">
           <span className="flex items-center gap-1.5 text-slate-400">
             <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-            OPERATOR: SAIRAM R // ARCH_KERNEL_6.x
+            OPERATOR: {PROFILE.name} {"//"} ARCH_KERNEL_6.x
           </span>
           <span className="text-slate-700">|</span>
           <span>LAT: 11.0168° N, LNG: 76.9558° E</span>
@@ -97,139 +98,91 @@ export function HeaderNav() {
           <span className="text-slate-400">CLK: {timeStr || "12:00:00"}</span>
         </div>
         <div className="flex items-center gap-4">
-          <span className="text-slate-400">ENV: C++ • OPENGL • BLENDER • UE5</span>
+          <span className="text-emerald-400 font-bold">PRIMARY: DEVOPS & INFRASTRUCTURE · AI SYSTEMS</span>
           <span className="text-slate-700">|</span>
-          <span className="text-emerald-400 font-bold">{fps} FPS</span>
-          <span className="text-slate-700">|</span>
-          <span className="text-amber-400">PURSUING BE CSE</span>
+          <span className="text-slate-400">{fps} FPS</span>
         </div>
       </div>
 
-      {/* Main Tactical Navbar */}
-      <div className="flex items-center justify-between px-4 sm:px-6 h-14">
-        {/* Left: Identity Logo */}
+      {/* Main Navigation Bar */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-14 flex items-center justify-between">
+        {/* Brand / Logo */}
         <div className="flex items-center gap-3">
           <a
-            href="#"
+            href="#hero"
             onClick={(e) => {
               e.preventDefault();
-              window.scrollTo({ top: 0, behavior: "smooth" });
-              SoundEngine.playClick();
+              handleNavClick("#hero");
             }}
-            className="group flex items-center gap-2.5 text-slate-200 hover:text-white transition-colors"
+            className="flex items-center gap-2 group cursor-pointer"
           >
-            <div className="w-8 h-8 bg-black border border-white/20 flex items-center justify-center font-bold text-amber-400 group-hover:border-amber-400 transition-colors font-dot text-sm">
+            <div className="w-8 h-8 bg-black/80 border border-white/20 flex items-center justify-center font-bold text-white text-sm group-hover:border-emerald-400 transition-colors">
               SR
             </div>
-            <div>
-              <div className="font-bold tracking-wider text-sm flex items-center gap-2">
-                <span className="text-white font-tech tracking-wider">{PROFILE.name}</span>
-                <span className="text-[9px] px-1.5 py-0.2 bg-white/10 text-amber-300 rounded-xs font-mono">
-                  {mode}
-                </span>
-              </div>
-              <div className="text-[9px] text-slate-500 font-mono tracking-tighter">
-                TECHNICAL ENVIRONMENT ARTIST // GRAPHICS PROGRAMMER
-              </div>
+            <div className="flex flex-col">
+              <span className="font-bold text-white tracking-wider font-tech text-sm group-hover:text-emerald-400 transition-colors">
+                {PROFILE.name}
+              </span>
+              <span className="text-[9px] text-slate-400 font-mono tracking-tight">
+                DEVOPS & AI SYSTEMS
+              </span>
             </div>
           </a>
         </div>
 
-        {/* Center: Navigation Links */}
-        <nav className="hidden xl:flex items-center gap-1 text-[11px] font-mono">
-          {navLinks.map((item) => (
+        {/* Desktop Nav Links */}
+        <nav className="hidden xl:flex items-center gap-1 font-mono text-[11px]">
+          {navLinks.map((link) => (
             <button
-              key={item.id}
-              onClick={() => handleNavClick(item.href)}
-              onMouseEnter={() => SoundEngine.playHover()}
-              className={`px-3 py-1.5 tracking-wider transition-all duration-150 rounded-xs relative ${
-                activeSection === item.id
-                  ? "text-white bg-white/10 font-bold"
-                  : "text-slate-400 hover:text-white hover:bg-white/5"
-              }`}
+              key={link.label}
+              onClick={() => handleNavClick(link.href)}
+              className="px-2.5 py-1 text-slate-400 hover:text-white hover:bg-white/5 transition-all cursor-pointer rounded-sm"
             >
-              {item.label}
-              {activeSection === item.id && (
-                <span className="absolute bottom-0 left-1 right-1 h-0.5 bg-amber-400" />
-              )}
+              {link.label}
             </button>
           ))}
         </nav>
 
-        {/* Right: Controls & Duality Switch */}
-        <div className="flex items-center gap-2 sm:gap-3">
-          {/* DUALITY MODE TOGGLE */}
-          <button
-            onClick={toggleMode}
-            onMouseEnter={() => SoundEngine.playHover()}
-            title="Toggle Art vs Code Perspective"
-            className={`flex items-center gap-1.5 px-3 py-1.5 border text-[11px] font-semibold tracking-wider transition-all cursor-pointer font-mono ${
-              mode === "ART"
-                ? "border-amber-500/60 bg-amber-500/10 text-amber-300 hover:bg-amber-500/20 shadow-sm"
-                : "border-cyan-500/60 bg-cyan-500/10 text-cyan-300 hover:bg-cyan-500/20 shadow-sm"
-            }`}
-          >
-            {mode === "ART" ? (
-              <>
-                <Layers className="w-3.5 h-3.5 text-amber-400" />
-                <span className="hidden sm:inline">ART MODE</span>
-              </>
-            ) : (
-              <>
-                <Code2 className="w-3.5 h-3.5 text-cyan-400" />
-                <span className="hidden sm:inline">CODE MODE</span>
-              </>
-            )}
-            <span className="text-[10px] opacity-60">⇄</span>
-          </button>
-
-          {/* Terminal Launcher */}
+        {/* Control Tools (Terminal, Audio, Mobile Menu) */}
+        <div className="flex items-center gap-2">
+          {/* Terminal Trigger */}
           <button
             onClick={() => {
               SoundEngine.playClick();
               setTerminalOpen(true);
             }}
-            onMouseEnter={() => SoundEngine.playHover()}
-            title="Launch Terminal (`~`)"
-            className="flex items-center gap-1.5 px-2.5 py-1.5 border border-white/15 hover:border-white/35 text-slate-300 hover:text-white transition-colors bg-white/5 cursor-pointer font-mono"
+            className="px-2.5 py-1 bg-black/60 border border-white/20 text-cyan-300 hover:text-white hover:border-cyan-400 font-mono text-[11px] flex items-center gap-1.5 transition-all cursor-pointer shadow-sm"
+            title="Open CLI Terminal (~)"
           >
-            <Terminal className="w-3.5 h-3.5 text-emerald-400" />
-            <span className="hidden md:inline text-[10px]">TERM [~]</span>
+            <Terminal className="w-3.5 h-3.5 text-cyan-400" />
+            <span className="hidden sm:inline">CLI [~]</span>
           </button>
 
-          {/* Audio Synthesizer Toggle */}
+          {/* Audio Mute/Unmute */}
           <button
-            onClick={toggleAudio}
-            onMouseEnter={() => SoundEngine.playHover()}
-            title={audioMuted ? "Unmute Audio Feedback" : "Mute Audio"}
-            className="p-2 border border-white/15 hover:border-white/35 text-slate-400 hover:text-white transition-colors bg-white/5 cursor-pointer"
+            onClick={() => {
+              toggleAudio();
+              SoundEngine.playClick();
+            }}
+            className="p-1.5 border border-white/10 hover:border-white/30 text-slate-400 hover:text-white transition-colors cursor-pointer"
+            title={audioMuted ? "Unmute Tactical SFX" : "Mute SFX"}
             aria-label="Toggle Audio"
           >
             {audioMuted ? (
-              <VolumeX className="w-3.5 h-3.5" />
+              <VolumeX className="w-4 h-4 text-slate-500" />
             ) : (
-              <Volume2 className="w-3.5 h-3.5 text-amber-400 animate-pulse" />
+              <Volume2 className="w-4 h-4 text-emerald-400 animate-pulse" />
             )}
           </button>
 
-          {/* Resume Viewer */}
+          {/* Mobile Menu Button */}
           <button
             onClick={() => {
               SoundEngine.playClick();
-              setResumeModalOpen(true);
+              setMobileMenuOpen(!mobileMenuOpen);
             }}
-            onMouseEnter={() => SoundEngine.playHover()}
-            className="hidden sm:flex items-center gap-1.5 px-3 py-1.5 bg-white/10 hover:bg-white/20 border border-white/25 text-white font-medium text-[11px] tracking-wider transition-colors cursor-pointer font-mono"
-          >
-            <FileText className="w-3 h-3 text-amber-400" />
-            <span>RESUME</span>
-          </button>
-
-          {/* Mobile Menu Toggle */}
-          <button
-            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="xl:hidden p-2 text-slate-300 hover:text-white"
-            aria-label="Toggle Navigation Menu"
+            className="xl:hidden p-1.5 border border-white/10 hover:border-white/30 text-white cursor-pointer"
+            aria-label="Toggle Menu"
           >
             {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
           </button>
@@ -238,37 +191,36 @@ export function HeaderNav() {
 
       {/* Mobile Drawer */}
       {mobileMenuOpen && (
-        <div className="xl:hidden bg-[#070a12] border-b border-white/10 px-6 py-4 space-y-2 font-mono">
-          {navLinks.map((item) => (
-            <button
-              key={item.id}
-              onClick={() => handleNavClick(item.href)}
-              className="block w-full text-left py-2 text-sm text-slate-300 hover:text-amber-400 border-b border-white/5"
+        <div className="xl:hidden bg-[#04060a] border-b border-white/10 p-4 space-y-2">
+          <div className="grid grid-cols-2 gap-2">
+            {navLinks.map((link) => (
+              <button
+                key={link.label}
+                onClick={() => handleNavClick(link.href)}
+                className="p-2.5 bg-black/50 border border-white/10 text-left text-slate-300 hover:text-white hover:border-emerald-400 font-mono text-xs cursor-pointer"
+              >
+                {link.label}
+              </button>
+            ))}
+          </div>
+
+          <div className="pt-2 border-t border-white/10 flex items-center justify-between text-[11px]">
+            <a
+              href={PROFILE.links.portfolio}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-emerald-400 underline"
             >
-              {item.label}
-            </button>
-          ))}
-          <div className="pt-2 flex items-center justify-between">
-            <button
-              onClick={() => {
-                setResumeModalOpen(true);
-                setMobileMenuOpen(false);
-              }}
-              className="flex items-center gap-2 py-2 text-amber-400 text-xs"
+              Vercel Portfolio
+            </a>
+            <a
+              href={PROFILE.links.github}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-amber-400 underline"
             >
-              <FileText className="w-4 h-4" />
-              <span>VIEW RESUME</span>
-            </button>
-            <button
-              onClick={() => {
-                setTerminalOpen(true);
-                setMobileMenuOpen(false);
-              }}
-              className="flex items-center gap-2 py-2 text-emerald-400 text-xs"
-            >
-              <Terminal className="w-4 h-4" />
-              <span>OPEN TERMINAL</span>
-            </button>
+              GitHub / SAIRAMSSSS
+            </a>
           </div>
         </div>
       )}

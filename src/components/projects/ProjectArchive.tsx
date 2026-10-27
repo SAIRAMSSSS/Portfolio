@@ -1,361 +1,284 @@
 "use client";
 
 import React, { useState } from "react";
-import { useDuality } from "@/context/DualityContext";
 import { SoundEngine } from "@/components/audio/SoundEffects";
-import { PROJECTS, ProjectItem } from "@/data/projects";
+import { PROJECTS, ProjectItem, SELECTED_PROJECT_DISCLAIMER } from "@/data/projects";
 import { GithubIcon } from "@/components/icons/BrandIcons";
 import { 
   Box, 
   ExternalLink, 
-  Layers, 
   Terminal, 
-  ShieldAlert, 
   Cpu, 
-  Sparkles, 
-  ChevronRight,
-  Maximize2,
-  X,
-  Sliders
+  Layers, 
+  Copy, 
+  Check, 
+  AlertTriangle,
+  ArrowRight,
+  Code2,
+  ChevronDown,
+  ChevronUp,
+  Flame,
+  ShieldCheck
 } from "lucide-react";
 
 export function ProjectArchive() {
-  const { mode } = useDuality();
-  const [selectedProject, setSelectedProject] = useState<ProjectItem | null>(null);
-  const [activeFilter, setActiveFilter] = useState<string>("ALL");
+  const [copiedId, setCopiedId] = useState<string | null>(null);
+  const [showExtendedArchive, setShowExtendedArchive] = useState<boolean>(false);
+  const [selectedExtendedCategory, setSelectedExtendedCategory] = useState<string>("ALL");
 
-  const categories = ["ALL", "ART", "GRAPHICS", "SECURITY", "GAMES", "AI"];
+  const headlineProjects = PROJECTS.filter((p) => p.headline);
+  const extendedProjects = PROJECTS.filter((p) => !p.headline);
 
-  const filteredProjects = activeFilter === "ALL" 
-    ? PROJECTS 
-    : PROJECTS.filter((p) => p.category === activeFilter);
+  const filteredExtended = selectedExtendedCategory === "ALL"
+    ? extendedProjects
+    : extendedProjects.filter((p) => p.category === selectedExtendedCategory);
 
-  const openArtifact = (proj: ProjectItem) => {
+  const copyCommand = (id: string, cmd: string) => {
     SoundEngine.playClick();
-    setSelectedProject(proj);
+    navigator.clipboard.writeText(cmd);
+    setCopiedId(id);
+    setTimeout(() => setCopiedId(null), 2200);
   };
 
   return (
-    <section id="projects" className="py-24 sm:py-32 relative bg-[#04060a] border-t border-white/10">
+    <section id="projects" className="py-24 sm:py-32 relative bg-[#030509] border-t border-white/10">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
-        {/* Section Title & Filter Bar */}
+        {/* Section Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 border-b border-white/10 pb-8">
           <div className="space-y-3">
-            <div className="flex items-center gap-2 font-mono text-xs text-amber-400 tracking-widest uppercase">
+            <div className="flex items-center gap-2 font-mono text-xs text-cyan-400 tracking-widest uppercase">
               <Box className="w-3.5 h-3.5" />
-              <span>THE DIGITAL MUSEUM // REPOSITORIES OF WORK</span>
+              <span>SECTION 02 // REPRODUCIBLE REPOSITORIES</span>
             </div>
-            <h2 className="text-4xl sm:text-6xl font-black text-white tracking-tight uppercase">
-              PROJECT <span className="text-slate-500 font-light">ARCHIVE</span>
+            <h2 className="text-4xl sm:text-6xl font-black text-white tracking-tight uppercase font-tech">
+              02 / <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-slate-100 to-slate-400">SELECTED PROJECTS</span>
             </h2>
-            <p className="text-slate-400 max-w-xl text-sm sm:text-base leading-relaxed">
-              Every project is treated as an engineered artifact: complete with architectural constraints, 
-              hardware bottlenecks, design iterations, and measured results.
+            <p className="text-slate-400 max-w-2xl text-sm sm:text-base leading-relaxed font-sans">
+              Practical software systems, hardware-level explorations, and experimental developer tools built from first principles with public source code and reproducible setups.
             </p>
           </div>
 
-          {/* Filter Bar */}
-          <div className="flex flex-wrap items-center gap-2 font-mono text-xs">
-            {categories.map((cat) => (
-              <button
-                key={cat}
-                onClick={() => {
-                  SoundEngine.playClick();
-                  setActiveFilter(cat);
-                }}
-                className={`px-3 py-1.5 border tracking-wider transition-colors cursor-pointer ${
-                  activeFilter === cat
-                    ? "border-amber-400 bg-amber-400/15 text-amber-300 font-bold"
-                    : "border-white/10 text-slate-400 hover:text-white hover:border-white/30 bg-white/5"
-                }`}
-              >
-                {cat}
-              </button>
-            ))}
+          <div className="font-mono text-xs text-slate-500 hidden md:block text-right space-y-1">
+            <span className="text-cyan-400 font-bold block">ACTIVE ENGINEERING WORK</span>
+            <span className="text-slate-400">CODE • DEMONSTRATIONS • EVIDENCE</span>
           </div>
         </div>
 
-        {/* Large-Format Museum Artifacts Grid */}
-        <div className="space-y-24">
-          {filteredProjects.map((project, idx) => (
+        {/* 3 HEADLINE PROJECTS DISPLAY */}
+        <div className="space-y-12">
+          {headlineProjects.map((project, idx) => (
             <article
               key={project.id}
-              className="blueprint-box p-6 sm:p-10 lg:p-12 relative transition-all duration-300 group"
+              className="blueprint-box p-6 sm:p-10 lg:p-12 relative transition-all duration-300 bg-[#050812] border border-white/15 hover:border-cyan-500/40 group"
             >
-              {/* Background Accent Lines */}
-              <div className="absolute top-0 right-12 text-7xl sm:text-9xl font-black font-mono text-white/5 select-none pointer-events-none">
+              {/* Massive subtle background number */}
+              <div className="absolute top-4 right-8 text-7xl sm:text-9xl font-black font-mono text-white/5 select-none pointer-events-none">
                 {project.number}
               </div>
 
-              <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 relative z-10">
-                {/* Left: Project Imagery & Visual Artifact */}
-                <div className="lg:col-span-7 space-y-4">
-                  <div className="relative aspect-16/10 bg-black/90 border border-white/20 overflow-hidden shadow-2xl group/img">
-                    <img
-                      src={project.visuals.hero}
-                      alt={project.title}
-                      className="w-full h-full object-cover group-hover/img:scale-105 transition-transform duration-700 opacity-90 group-hover/img:opacity-100"
-                    />
-
-                    {/* Badge Overlay */}
-                    <div className="absolute top-3 left-3 bg-black/80 backdrop-blur-md px-2.5 py-1 border border-white/20 font-mono text-[10px] text-amber-300 tracking-wider">
-                      {project.visuals.badge}
-                    </div>
-
-                    {/* Expand Trigger */}
-                    <button
-                      onClick={() => openArtifact(project)}
-                      className="absolute bottom-3 right-3 bg-black/85 hover:bg-amber-500 hover:text-black text-white p-2 border border-white/20 transition-colors font-mono text-xs flex items-center gap-1.5 cursor-pointer"
-                    >
-                      <Maximize2 className="w-3.5 h-3.5" />
-                      <span>INSPECT ARTIFACT</span>
-                    </button>
-                  </div>
-
-                  {/* Caption & Metrics Strip */}
-                  <div className="flex flex-wrap items-center justify-between gap-4 font-mono text-xs text-slate-400 border-t border-white/10 pt-3">
-                    <span className="text-slate-300">{project.visuals.caption}</span>
-                    {project.metrics && (
-                      <div className="flex items-center gap-4">
-                        {project.metrics.map((m, i) => (
-                          <div key={i} className="text-right">
-                            <span className="text-[10px] text-slate-500 block">{m.label}</span>
-                            <span className="text-white font-bold">{m.value}</span>
-                          </div>
-                        ))}
-                      </div>
-                    )}
-                  </div>
-                </div>
-
-                {/* Right: Technical Narrative & Execution */}
-                <div className="lg:col-span-5 flex flex-col justify-between space-y-6">
-                  <div className="space-y-4">
-                    {/* Category & Project Number */}
-                    <div className="flex items-center gap-3 font-mono text-xs">
-                      <span className="px-2 py-0.5 bg-amber-500/10 border border-amber-500/30 text-amber-400 font-bold">
-                        PROJECT {project.number}
+              <div className="relative z-10 space-y-8">
+                {/* Title & Metadata Top Row */}
+                <div className="flex flex-wrap items-center justify-between gap-4 border-b border-white/10 pb-6">
+                  <div className="space-y-1">
+                    <div className="flex items-center gap-2.5 font-mono text-xs">
+                      <span className="px-2 py-0.5 bg-cyan-500/10 border border-cyan-500/30 text-cyan-300 font-bold">
+                        ARTIFACT {project.number}
                       </span>
-                      <span className="text-slate-500">//</span>
-                      <span className="text-slate-400">{project.category}</span>
-                      <span className="text-slate-500">//</span>
+                      <span className="text-slate-500">{"//"}</span>
                       <span className="text-slate-400">{project.role}</span>
                     </div>
 
-                    {/* Title & Subtitle */}
-                    <div className="space-y-1">
-                      <h3 className="text-2xl sm:text-3xl font-black text-white tracking-tight font-mono">
-                        {project.title}
-                      </h3>
-                      <p className="text-sm font-mono text-amber-400/90">
-                        {project.subtitle}
-                      </p>
-                    </div>
-
-                    {/* Tech Stack Pills */}
-                    <div className="flex flex-wrap gap-1.5 pt-1">
-                      {project.techStack.map((tech) => (
-                        <span
-                          key={tech}
-                          className="px-2 py-0.5 bg-white/5 border border-white/10 text-slate-300 font-mono text-[10px]"
-                        >
-                          {tech}
-                        </span>
-                      ))}
-                    </div>
-
-                    {/* Summary */}
-                    <p className="text-sm text-slate-300 leading-relaxed pt-2">
-                      {project.summary}
+                    <h3 className="text-2xl sm:text-4xl font-black text-white uppercase tracking-tight font-tech">
+                      {project.title}
+                    </h3>
+                    <p className="text-sm font-mono text-cyan-400">
+                      {project.subtitle}
                     </p>
-
-                    {/* Problem vs Solution High-level callout */}
-                    <div className="p-3.5 bg-black/60 border-l-2 border-amber-400 space-y-1 text-xs">
-                      <span className="font-mono text-[10px] text-amber-400 font-bold tracking-wider uppercase block">
-                        THE CHALLENGE //
-                      </span>
-                      <p className="text-slate-300 text-[11px] leading-relaxed">
-                        {project.problem}
-                      </p>
-                    </div>
                   </div>
 
-                  {/* Action CTAs */}
-                  <div className="pt-4 flex flex-wrap items-center gap-3 font-mono text-xs border-t border-white/10">
-                    <button
-                      onClick={() => openArtifact(project)}
-                      className="px-4 py-2 bg-white text-black font-bold hover:bg-amber-400 transition-colors flex items-center gap-1.5 cursor-pointer"
-                    >
-                      <span>READ FULL MANIFEST</span>
-                      <ChevronRight className="w-3.5 h-3.5" />
-                    </button>
+                  {/* Direct Github Link */}
+                  <a
+                    href={project.githubUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    onClick={() => SoundEngine.playClick()}
+                    className="px-4 py-2.5 bg-white/10 hover:bg-cyan-500 hover:text-black text-white font-mono text-xs font-bold tracking-wider flex items-center gap-2 transition-all border border-white/20 cursor-pointer shadow-md"
+                  >
+                    <span>Source code →</span>
+                    <GithubIcon className="w-4 h-4" />
+                  </a>
+                </div>
 
-                    {project.githubUrl && (
-                      <a
-                        href={project.githubUrl}
-                        target="_blank"
-                        rel="noreferrer"
-                        className="px-3 py-2 bg-white/5 hover:bg-white/10 border border-white/15 text-slate-300 hover:text-white transition-colors flex items-center gap-1.5"
-                      >
-                        <GithubIcon className="w-3.5 h-3.5" />
-                        <span>SOURCE</span>
-                      </a>
-                    )}
+                {/* Tech Stack Pills */}
+                <div className="flex flex-wrap gap-2 font-mono text-xs">
+                  {project.techStack.map((tech) => (
+                    <span
+                      key={tech}
+                      className="px-2.5 py-1 bg-black/60 border border-white/15 text-slate-300 font-medium tracking-wide"
+                    >
+                      {tech}
+                    </span>
+                  ))}
+                </div>
+
+                {/* Summary & Core Narrative */}
+                <p className="text-base sm:text-lg text-slate-300 font-sans leading-relaxed max-w-4xl">
+                  {project.summary}
+                </p>
+
+                {/* Focus Areas & Next Priorities 2-Column Grid */}
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 pt-2">
+                  {/* Left Column: Focus Areas */}
+                  <div className="p-5 bg-black/50 border border-white/10 space-y-3 font-mono text-xs">
+                    <div className="flex items-center gap-2 text-cyan-400 font-bold uppercase tracking-wider text-[11px]">
+                      <Cpu className="w-3.5 h-3.5" />
+                      <span>KEY FOCUS AREAS:</span>
+                    </div>
+                    <ul className="space-y-2 font-sans text-slate-300 text-xs sm:text-sm">
+                      {project.focusAreas.map((item, fIdx) => (
+                        <li key={fIdx} className="flex items-start gap-2">
+                          <span className="text-cyan-400 font-mono text-xs mt-0.5">▸</span>
+                          <span>{item}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+
+                  {/* Right Column: Next Engineering Priorities */}
+                  <div className="p-5 bg-black/50 border border-white/10 space-y-3 font-mono text-xs">
+                    <div className="flex items-center gap-2 text-emerald-400 font-bold uppercase tracking-wider text-[11px]">
+                      <ShieldCheck className="w-3.5 h-3.5" />
+                      <span>NEXT ENGINEERING PRIORITIES:</span>
+                    </div>
+                    <ul className="space-y-2 font-sans text-slate-300 text-xs sm:text-sm">
+                      {project.nextPriorities.map((item, pIdx) => (
+                        <li key={pIdx} className="flex items-start gap-2">
+                          <span className="text-emerald-400 font-mono text-xs mt-0.5">▸</span>
+                          <span>{item}</span>
+                        </li>
+                      ))}
+                    </ul>
                   </div>
                 </div>
+
+                {/* 1-Click Reproduction Terminal Command */}
+                {project.reproductionCommand && (
+                  <div className="p-4 bg-[#020306] border border-white/15 space-y-2 font-mono text-xs">
+                    <div className="flex items-center justify-between text-[11px] text-slate-500">
+                      <span className="flex items-center gap-1.5 text-slate-400">
+                        <Terminal className="w-3.5 h-3.5 text-emerald-400" />
+                        <span>REPRODUCIBLE EXECUTION // RUN LOCALLY:</span>
+                      </span>
+                      <button
+                        onClick={() => copyCommand(project.id, project.reproductionCommand!)}
+                        className="flex items-center gap-1 text-slate-400 hover:text-white transition-colors cursor-pointer"
+                      >
+                        {copiedId === project.id ? (
+                          <>
+                            <Check className="w-3 h-3 text-emerald-400" />
+                            <span className="text-emerald-400">COPIED</span>
+                          </>
+                        ) : (
+                          <>
+                            <Copy className="w-3 h-3" />
+                            <span>COPY RUNBOOK</span>
+                          </>
+                        )}
+                      </button>
+                    </div>
+                    <code className="block text-slate-200 overflow-x-auto py-1 text-[11px] sm:text-xs">
+                      $ {project.reproductionCommand}
+                    </code>
+                  </div>
+                )}
               </div>
             </article>
           ))}
         </div>
-      </div>
 
-      {/* DETAILED ARTIFACT INSPECTOR MODAL */}
-      {selectedProject && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 bg-black/85 backdrop-blur-md overflow-y-auto">
-          <div className="w-full max-w-4xl max-h-[90vh] flex flex-col bg-[#0b0e17] border border-white/20 shadow-2xl text-slate-200 overflow-hidden relative">
-            {/* Modal Header */}
-            <div className="flex items-center justify-between px-6 py-3.5 bg-[#111726] border-b border-white/10 font-mono text-xs">
-              <div className="flex items-center gap-2">
-                <Box className="w-4 h-4 text-amber-400" />
-                <span className="font-bold text-white tracking-wider">
-                  ARTIFACT SPECIFICATION // [{selectedProject.number}] {selectedProject.title}
-                </span>
-              </div>
-              <button
-                onClick={() => setSelectedProject(null)}
-                className="p-1 hover:text-white text-slate-400 hover:bg-white/10 rounded-xs"
-                aria-label="Close modal"
-              >
-                <X className="w-5 h-5" />
-              </button>
+        {/* INTEGRITY & ACTIVE WORK DISCLAIMER */}
+        <div className="p-6 sm:p-8 bg-[#090e18] border border-amber-500/30 relative">
+          <div className="flex items-start gap-4">
+            <div className="p-2 bg-amber-500/10 border border-amber-500/30 text-amber-400 shrink-0 mt-0.5">
+              <AlertTriangle className="w-5 h-5" />
             </div>
-
-            {/* Modal Scrollable Content */}
-            <div className="flex-1 overflow-y-auto p-6 sm:p-10 space-y-8 bg-[#07090f] text-sm">
-              {/* Media Gallery / Master Artifact Viewport */}
-              <div className="relative aspect-16/9 bg-black border border-white/20 overflow-hidden shadow-2xl group">
-                <img 
-                  src={selectedProject.visuals.hero} 
-                  alt={selectedProject.title}
-                  className="w-full h-full object-cover group-hover:scale-102 transition-transform duration-500"
-                />
-                
-                {/* Visual Badges */}
-                <div className="absolute top-4 left-4 bg-black/85 backdrop-blur-md px-3 py-1.5 border border-white/20 font-mono text-[11px] text-amber-300 tracking-wider flex items-center gap-2">
-                  <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-                  <span>{selectedProject.visuals.badge}</span>
-                </div>
-
-                <div className="absolute top-4 right-4 bg-black/85 backdrop-blur-md px-3 py-1.5 border border-white/20 font-mono text-[11px] text-slate-300">
-                  CATEGORY: {selectedProject.category}
-                </div>
-
-                <div className="absolute bottom-4 left-4 right-4 bg-black/85 backdrop-blur-md p-3 border border-white/20 flex flex-wrap items-center justify-between gap-2 font-mono text-xs">
-                  <span className="text-slate-300">{selectedProject.visuals.caption}</span>
-                  {selectedProject.githubUrl && (
-                    <a
-                      href={selectedProject.githubUrl}
-                      target="_blank"
-                      rel="noreferrer"
-                      className="px-2.5 py-1 bg-white/10 hover:bg-white/20 border border-white/20 text-amber-300 hover:text-white transition-colors flex items-center gap-1.5"
-                    >
-                      <GithubIcon className="w-3.5 h-3.5" />
-                      <span>OPEN SOURCE REPO</span>
-                    </a>
-                  )}
-                </div>
-              </div>
-
-              {/* Problem & Idea */}
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div className="p-5 bg-white/5 border border-white/10 space-y-2">
-                  <h4 className="font-mono text-xs font-bold text-amber-400 tracking-wider uppercase">
-                    1. THE PROBLEM
-                  </h4>
-                  <p className="text-slate-300 text-xs leading-relaxed">
-                    {selectedProject.problem}
-                  </p>
-                </div>
-                <div className="p-5 bg-white/5 border border-white/10 space-y-2">
-                  <h4 className="font-mono text-xs font-bold text-cyan-400 tracking-wider uppercase">
-                    2. THE ARCHITECTURAL IDEA
-                  </h4>
-                  <p className="text-slate-300 text-xs leading-relaxed">
-                    {selectedProject.idea}
-                  </p>
-                </div>
-              </div>
-
-              {/* Engineering Process Steps */}
-              <div className="space-y-3">
-                <h4 className="font-mono text-xs font-bold text-slate-400 tracking-wider uppercase">
-                  3. EXECUTION PROCESS & METHODOLOGY
-                </h4>
-                <div className="space-y-2">
-                  {selectedProject.process.map((step, idx) => (
-                    <div key={idx} className="flex items-start gap-3 p-3 bg-black/50 border border-white/10 text-xs">
-                      <span className="font-mono text-amber-400 font-bold shrink-0">
-                        {String(idx + 1).padStart(2, "0")}.
-                      </span>
-                      <span className="text-slate-300">{step}</span>
-                    </div>
-                  ))}
-                </div>
-              </div>
-
-              {/* Technical Challenges & What Was Learned */}
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div className="space-y-2">
-                  <h4 className="font-mono text-xs font-bold text-rose-400 tracking-wider uppercase">
-                    4. TECHNICAL BOTTLENECKS
-                  </h4>
-                  <ul className="space-y-2 text-xs text-slate-300">
-                    {selectedProject.technicalChallenges.map((ch, i) => (
-                      <li key={i} className="p-3 bg-rose-950/20 border border-rose-900/30">
-                        • {ch}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-
-                <div className="space-y-2">
-                  <h4 className="font-mono text-xs font-bold text-emerald-400 tracking-wider uppercase">
-                    5. WHAT WAS LEARNED
-                  </h4>
-                  <ul className="space-y-2 text-xs text-slate-300">
-                    {selectedProject.whatWasLearned.map((wl, i) => (
-                      <li key={i} className="p-3 bg-emerald-950/20 border border-emerald-900/30">
-                        ✓ {wl}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              </div>
-
-              {/* Final Result */}
-              <div className="p-5 bg-gradient-to-r from-amber-500/10 to-transparent border border-amber-500/30 space-y-1">
-                <h4 className="font-mono text-xs font-bold text-amber-400 tracking-wider uppercase">
-                  6. MEASURABLE RESULT
-                </h4>
-                <p className="text-white font-medium text-xs sm:text-sm">
-                  {selectedProject.result}
-                </p>
-              </div>
-            </div>
-
-            {/* Modal Footer */}
-            <div className="px-6 py-3 bg-[#111726] border-t border-white/10 flex items-center justify-between font-mono text-xs">
-              <span className="text-slate-400">STATUS: VERIFIED PRODUCTION ARTIFACT</span>
-              <button
-                onClick={() => setSelectedProject(null)}
-                className="text-amber-400 hover:underline cursor-pointer"
-              >
-                CLOSE MANIFEST
-              </button>
+            <div className="space-y-1.5">
+              <span className="text-xs font-mono font-bold uppercase tracking-wider text-amber-400">
+                ACTIVE ENGINEERING INTEGRITY NOTICE
+              </span>
+              <p className="text-sm sm:text-base text-slate-300 font-sans leading-relaxed">
+                &ldquo;{SELECTED_PROJECT_DISCLAIMER}&rdquo;
+              </p>
             </div>
           </div>
         </div>
-      )}
+
+        {/* EXPANDABLE EXTENDED ARCHIVE TOGGLE */}
+        <div className="border-t border-white/10 pt-10">
+          <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
+            <div className="space-y-1 text-center sm:text-left">
+              <h3 className="text-xl sm:text-2xl font-bold text-white uppercase font-tech">
+                EXTENDED ARCHIVE // GRAPHICS, SECURITY & GAME JAMS
+              </h3>
+              <p className="text-xs font-mono text-slate-400">
+                Additional C++ OpenGL labs, network packet analyzers, and game jam systems.
+              </p>
+            </div>
+
+            <button
+              onClick={() => {
+                SoundEngine.playClick();
+                setShowExtendedArchive(!showExtendedArchive);
+              }}
+              className="px-5 py-2.5 bg-white/5 hover:bg-white/10 border border-white/20 text-white font-mono text-xs font-bold tracking-wider flex items-center gap-2 transition-all cursor-pointer"
+            >
+              <span>{showExtendedArchive ? "COLLAPSE ARCHIVE" : "VIEW EXTENDED ARCHIVE (4)"}</span>
+              {showExtendedArchive ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
+            </button>
+          </div>
+
+          {/* Extended Grid */}
+          {showExtendedArchive && (
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-8">
+              {filteredExtended.map((project) => (
+                <div
+                  key={project.id}
+                  className="blueprint-box p-6 bg-[#060912] border border-white/15 space-y-4 font-mono text-xs"
+                >
+                  <div className="flex items-center justify-between text-slate-500 text-[11px]">
+                    <span className="text-amber-400 font-bold">{project.number} {"//"} {project.category}</span>
+                    <a
+                      href={project.githubUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="hover:text-white flex items-center gap-1 transition-colors"
+                    >
+                      <span>REPO</span>
+                      <ExternalLink className="w-3 h-3" />
+                    </a>
+                  </div>
+
+                  <h4 className="text-xl font-black text-white uppercase font-tech">
+                    {project.title}
+                  </h4>
+
+                  <p className="text-xs text-slate-400 font-sans leading-relaxed line-clamp-3">
+                    {project.summary}
+                  </p>
+
+                  <div className="flex flex-wrap gap-1.5 pt-2">
+                    {project.techStack.map((tech) => (
+                      <span key={tech} className="px-2 py-0.5 bg-black/60 border border-white/10 text-[10px] text-slate-300">
+                        {tech}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              ))}
+            </div>
+          )}
+        </div>
+      </div>
     </section>
   );
 }

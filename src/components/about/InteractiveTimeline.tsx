@@ -64,7 +64,7 @@ export function InteractiveTimeline() {
                     : "border-white/10 bg-black/50 text-slate-400 hover:text-white hover:border-white/30"
                 }`}
               >
-                <div className="text-[10px] text-slate-500 mb-1">0{index + 1} // ERA</div>
+                <div className="text-[10px] text-slate-500 mb-1">0{index + 1} {"//"} ERA</div>
                 <div className="text-amber-400 font-bold text-xs tracking-wider mb-1 font-dot">{node.tag}</div>
                 <div className="text-white text-xs font-bold font-sans line-clamp-1">{node.title}</div>
                 <span className={`text-[9px] inline-block px-1.5 py-0.2 mt-2 border ${
@@ -82,7 +82,7 @@ export function InteractiveTimeline() {
               <div>
                 <div className="flex items-center gap-2 text-xs text-amber-400 font-bold tracking-widest uppercase">
                   <span>[{activeNode.tag}]</span>
-                  <span>//</span>
+                  <span>{"//"}</span>
                   <span>{activeNode.badge}</span>
                 </div>
                 <h3 className="text-2xl sm:text-3xl font-black text-white tracking-tight mt-1 font-tech">

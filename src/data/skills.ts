@@ -1,298 +1,258 @@
-export interface TechItem {
+export interface ToolkitItem {
   id: string;
   name: string;
-  category: "ENGINEERING" | "GRAPHICS" | "GAME_DEV" | "ENVIRONMENT_ART" | "AI" | "SYSTEMS_OTHER";
+  category: "DEVOPS_INFRA" | "AI_GPU" | "LANGUAGES" | "SYSTEMS" | "APP_DEV" | "GRAPHICS_GAMES";
+  status: "USED_IN_PROJECTS" | "CURRENTLY_DEVELOPING";
   shortDescription: string;
-  usedFor: string;
-  depthNotes: string;
+  usedForOrFocus: string;
+  evidenceNotes: string;
   relevantProjects: string[];
-  relatedTech: string[];
-  levelLabel?: string; // e.g. "Primary", "Active Research", "Production"
+  levelBadge: string;
 }
 
-export const TECH_CATEGORIES = [
-  { id: "ENVIRONMENT_ART", label: "ENVIRONMENT ART", subtitle: "Visual Worlds & PBR" },
-  { id: "GRAPHICS", label: "GRAPHICS PROGRAMMING", subtitle: "Pipelines, Shaders & Math" },
-  { id: "GAME_DEV", label: "GAME DEVELOPMENT", subtitle: "Systems, Engines & Gameplay" },
-  { id: "ENGINEERING", label: "CORE ENGINEERING", subtitle: "Languages, Toolchains & OS" },
-  { id: "AI", label: "INTELLIGENCE / ML", subtitle: "Tensors, Models & Pipelines" },
-  { id: "SYSTEMS_OTHER", label: "SYSTEMS & SECURITY", subtitle: "IoT, Protocols & Community" }
+export const TOOLKIT_CATEGORIES = [
+  { id: "ALL", label: "ALL ARSENAL", subtitle: "Full Technical Matrix" },
+  { id: "DEVOPS_INFRA", label: "DEVOPS & INFRASTRUCTURE", subtitle: "Linux, Containers & Automation" },
+  { id: "AI_GPU", label: "AI & GPU COMPUTING", subtitle: "Local LLMs, Tensors & CUDA" },
+  { id: "LANGUAGES", label: "LANGUAGES", subtitle: "C++, Rust, Python, TS" },
+  { id: "SYSTEMS", label: "SYSTEMS & TOOLCHAINS", subtitle: "Git, CMake, POSIX, Networks" },
+  { id: "APP_DEV", label: "APPLICATION DEV", subtitle: "React, Next.js, Django, Postgres" },
+  { id: "GRAPHICS_GAMES", label: "GRAPHICS & 3D (LONG-TERM)", subtitle: "Vulkan, OpenGL, Shaders, Blender" }
 ] as const;
 
-export const TECH_ITEMS: TechItem[] = [
-  // ENVIRONMENT ART
+export const TOOLKIT_DISTINCTION_STATEMENT =
+  "The distinction matters: technologies already used in projects are not the same as technologies currently being learned. Honesty in engineering builds lasting trust.";
+
+export const TOOLKIT_ITEMS: ToolkitItem[] = [
+  // --- DEVOPS & INFRASTRUCTURE ---
   {
-    id: "blender",
-    name: "Blender 5.x",
-    category: "ENVIRONMENT_ART",
-    shortDescription: "Subdivision surface modeling, blockout prototyping, retopology, UV unwrapping.",
-    usedFor: "Crafting modular environment kits, hero props, LOD generation, and custom asset blockouts.",
-    depthNotes: "Deep command of ZenUV, hard-surface bevel modifiers, weighted normals, and non-destructive modifier stacks.",
-    relevantProjects: ["LANTERN Hero Asset", "Modular Dungeon Kit", "Organic & Hard Surface Blockouts"],
-    relatedTech: ["Substance Painter", "Unreal Engine 5", "InstaMAT"],
-    levelLabel: "Primary Creative Tool"
+    id: "linux-systems",
+    name: "Linux (Kernel & CLI)",
+    category: "DEVOPS_INFRA",
+    status: "USED_IN_PROJECTS",
+    shortDescription: "Daily driver operating system, POSIX environments, shell scripting, process control.",
+    usedForOrFocus: "Configuring development environments, managing system daemons, debugging network sockets, and process signaling.",
+    evidenceNotes: "Arch Linux daily driver with extensive shell scripting, POSIX system calls, and automated task execution.",
+    relevantProjects: ["REMoErminal", "IoT Vulnerability Analyzer", "System Workstation"],
+    levelBadge: "USED IN PROJECTS"
   },
   {
-    id: "substance-painter",
-    name: "Substance 3D Painter",
-    category: "ENVIRONMENT_ART",
-    shortDescription: "PBR texture authoring, high-poly cage baking, procedural smart materials.",
-    usedFor: "Baking ambient occlusion, curvature, and normal maps; authoring albedo, roughness, metallic, and micro-wear masks.",
-    depthNotes: "Mastery of physically plausible roughness values, micro-scratches, edge wear generators, and multi-layer channel anchors.",
-    relevantProjects: ["LANTERN Hero Asset", "Hard-Surface Props"],
-    relatedTech: ["Blender", "InstaMAT", "Unreal Engine 5"],
-    levelLabel: "Production Workflow"
+    id: "docker-containers",
+    name: "Docker Fundamentals",
+    category: "DEVOPS_INFRA",
+    status: "USED_IN_PROJECTS",
+    shortDescription: "Containerization basics, multi-stage builds, layer caching, Dockerfile authoring.",
+    usedForOrFocus: "Isolating runtime dependencies, containerizing web/database applications, and reproducible test environments.",
+    evidenceNotes: "Authored multi-container Docker compose setups for local PostgreSQL, Next.js, and Python backend services.",
+    relevantProjects: ["Web Services", "Dev Environment Setup"],
+    levelBadge: "USED IN PROJECTS"
   },
   {
-    id: "instamat",
-    name: "InstaMAT",
-    category: "ENVIRONMENT_ART",
-    shortDescription: "Next-gen node-based procedural material graph generation and asset processing.",
-    usedFor: "Synthesizing procedural tileable materials, automations, and material graphs for game environments.",
-    depthNotes: "Utilized for procedural texturing pipelines, seamless material graphs, and rapid variation synthesis.",
-    relevantProjects: ["LANTERN Hero Asset", "Surface Variations"],
-    relatedTech: ["Substance Painter", "Blender", "PBR Workflow"],
-    levelLabel: "Active Tool"
+    id: "cicd-pipelines",
+    name: "CI/CD & Automated Testing",
+    category: "DEVOPS_INFRA",
+    status: "CURRENTLY_DEVELOPING",
+    shortDescription: "Automated build, test, and release validation pipelines via GitHub Actions.",
+    usedForOrFocus: "Constructing matrix builds for C++, Rust, and Node.js with automated test gates and artifact uploads.",
+    evidenceNotes: "Actively engineering automated test and lint pipelines with zero-downtime deployment triggers.",
+    relevantProjects: ["Infrastructure Milestone 1", "REMoWser CI"],
+    levelBadge: "CURRENTLY DEVELOPING"
   },
   {
-    id: "unreal-art",
-    name: "Unreal Engine 5 (Art/Lighting)",
-    category: "ENVIRONMENT_ART",
-    shortDescription: "Lumen dynamic global illumination, Nanite geometry, master shader graphs.",
-    usedFor: "World composition, material instancing, level lighting, atmospheric post-processing, and cinematic staging.",
-    depthNotes: "Configuring master material graphs with PBR energy conservation, detail normals, and vertex color blending.",
-    relevantProjects: ["LANTERN Hero Asset", "Environment Staging"],
-    relatedTech: ["Blender", "Substance Painter", "PBR Workflow"],
-    levelLabel: "Primary Engine"
+    id: "kubernetes-cloud",
+    name: "Kubernetes & Cloud Infrastructure",
+    category: "DEVOPS_INFRA",
+    status: "CURRENTLY_DEVELOPING",
+    shortDescription: "Pod orchestration, service definitions, ingress, and Infrastructure as Code (IaC).",
+    usedForOrFocus: "Learning cloud deployment topologies, declarative manifests, service discovery, and cluster scaling.",
+    evidenceNotes: "Building local k3s / minikube test environments to master pods, deployments, configmaps, and persistent volumes.",
+    relevantProjects: ["Infrastructure Milestone 1", "Cloud Trajectory"],
+    levelBadge: "CURRENTLY DEVELOPING"
   },
   {
-    id: "pbr-materials",
-    name: "PBR Materials & Lighting",
-    category: "ENVIRONMENT_ART",
-    shortDescription: "Physically Based Rendering theory: conservation of energy, microfacet Cook-Torrance.",
-    usedFor: "Ensuring material values (Roughness, Metallic, Specular, BaseColor) react accurately across dynamic lighting setups.",
-    depthNotes: "Trained in dielectric vs metallic reflectance standards, sRGB vs linear color spaces, and Fresnel equations.",
-    relevantProjects: ["LANTERN Hero Asset", "OpenGL Lab"],
-    relatedTech: ["Unreal Engine 5", "Blender", "Shaders"],
-    levelLabel: "Core Standard"
-  },
-  {
-    id: "modular-environments",
-    name: "Modular Environments",
-    category: "ENVIRONMENT_ART",
-    shortDescription: "Grid-snapped architecture, trim sheets, tileable textures, and optimized draw-call budgets.",
-    usedFor: "Building expansive game environments from reusable structural kits with zero visible seam artifacts.",
-    depthNotes: "Designing on strict 50cm/100cm grid snapping metrics with shared UV trim sheets to maximize GPU batching.",
-    relevantProjects: ["Modular Dungeon Prototype", "Environment Blockouts"],
-    relatedTech: ["Blender", "Unreal Engine 5", "PBR Materials"],
-    levelLabel: "Design Methodology"
+    id: "monitoring-observability",
+    name: "Monitoring & Deployment Reliability",
+    category: "DEVOPS_INFRA",
+    status: "CURRENTLY_DEVELOPING",
+    shortDescription: "Telemetry collection, structured log aggregation, health checks, and failure recovery.",
+    usedForOrFocus: "Monitoring service availability, error rates, and hardware memory consumption under load.",
+    evidenceNotes: "Studying Prometheus metric collection, Grafana dashboards, and automated rollback triggers.",
+    relevantProjects: ["Infrastructure Milestone 1"],
+    levelBadge: "CURRENTLY DEVELOPING"
   },
 
-  // GRAPHICS PROGRAMMING
+  // --- AI & GPU COMPUTING ---
   {
-    id: "opengl",
-    name: "OpenGL 4.6 Core",
-    category: "GRAPHICS",
-    shortDescription: "Modern programmable graphics pipeline, buffer layouts, state machines, draw calls.",
-    usedFor: "Constructing raw rendering testbeds, custom mesh renderers, and frame-rate benchmarking in C++.",
-    depthNotes: "Hands-on experience with VAO, VBO, EBO stride layouts, uniform buffers, framebuffer render targets, and debug callbacks.",
-    relevantProjects: ["OpenGL Lab", "Real-Time Pipeline Inspector"],
-    relatedTech: ["C++", "GLSL", "GLFW", "GLAD", "Vulkan"],
-    levelLabel: "Deep Implementation"
+    id: "local-llm-ollama",
+    name: "Local LLMs & Ollama",
+    category: "AI_GPU",
+    status: "USED_IN_PROJECTS",
+    shortDescription: "Local model hosting, streaming token evaluation, and structured JSON function calling.",
+    usedForOrFocus: "Powering autonomous desktop browser agents with local quantized models without external API latency.",
+    evidenceNotes: "Integrated Ollama directly into Electron via asynchronous IPC channels in REMoWser with live tool logging.",
+    relevantProjects: ["REMoWser — Local AI Browser"],
+    levelBadge: "USED IN PROJECTS"
   },
   {
-    id: "vulkan",
-    name: "Vulkan API",
-    category: "GRAPHICS",
-    shortDescription: "Explicit, low-overhead GPU control, command buffers, pipeline barriers, swapchains.",
-    usedFor: "Exploring modern explicit graphics architecture: physical devices, queues, memory allocation, and render passes.",
-    depthNotes: "Studying explicit synchronization (semaphores, fences), memory heaps, and SPIR-V compiled shader pipelines.",
-    relevantProjects: ["Vulkan Pipeline Experiments", "Graphics Progression"],
-    relatedTech: ["C++", "OpenGL", "SPIR-V", "Shaders"],
-    levelLabel: "Active Exploration"
+    id: "playwright-automation",
+    name: "Playwright Browser Automation",
+    category: "AI_GPU",
+    status: "USED_IN_PROJECTS",
+    shortDescription: "Headless browser control, DOM inspection, event synthesis, and screenshot capture.",
+    usedForOrFocus: "Executing multi-step agent actions: form interaction, selector extraction, and page navigation.",
+    evidenceNotes: "Programmed resilient browser interaction drivers with dynamic waiting, retries, and failure recovery.",
+    relevantProjects: ["REMoWser — Local AI Browser"],
+    levelBadge: "USED IN PROJECTS"
   },
   {
-    id: "glsl-shaders",
-    name: "GLSL / Shaders",
-    category: "GRAPHICS",
-    shortDescription: "Programmable vertex, fragment, and compute shaders; vector/matrix mathematics.",
-    usedFor: "Implementing Blinn-Phong lighting, raymarching signed distance fields, CRT scanlines, and procedural textures.",
-    depthNotes: "Fluent in coordinate space transforms (Local → World → View → Clip), normal calculation, and procedural noise.",
-    relevantProjects: ["OpenGL Lab", "Retropunk CRT Shaders", "Interactive Shader Lab"],
-    relatedTech: ["OpenGL", "C++", "HLSL"],
-    levelLabel: "High Proficiency"
-  },
-  {
-    id: "glfw-glad",
-    name: "GLFW & GLAD",
-    category: "GRAPHICS",
-    shortDescription: "Context creation, windowing, user input polling, and OpenGL function pointer loading.",
-    usedFor: "Bootstrapping clean C++ graphics applications without bulky engine baggage.",
-    depthNotes: "Handling monitor refresh rates, swap intervals (VSync), aspect ratio viewport resizing, and raw mouse delta.",
-    relevantProjects: ["OpenGL Lab"],
-    relatedTech: ["OpenGL", "C++", "GLM"],
-    levelLabel: "Standard Stack"
+    id: "pytorch-cuda-perf",
+    name: "PyTorch & CUDA Fundamentals",
+    category: "AI_GPU",
+    status: "CURRENTLY_DEVELOPING",
+    shortDescription: "Tensor memory allocation, GPU compute kernels, and latency/bandwidth measurement.",
+    usedForOrFocus: "Measuring how neural operations execute on physical CPU vs GPU hardware and profiling memory bottlenecks.",
+    evidenceNotes: "Active hands-on exploration of PyTorch tensor operations, CUDA execution streams, and FP32/FP16 performance gaps.",
+    relevantProjects: ["Hardware Benchmark Milestone", "Intelligence Lab"],
+    levelBadge: "CURRENTLY DEVELOPING"
   },
 
-  // GAME DEV
+  // --- LANGUAGES ---
   {
-    id: "ue5-systems",
-    name: "Unreal Engine 5 (Systems)",
-    category: "GAME_DEV",
-    shortDescription: "C++ Actor lifecycle, Enhanced Input, Gameplay Framework, Profiling.",
-    usedFor: "Developing responsive character controllers, state machines, interaction interfaces, and game jam prototypes.",
-    depthNotes: "Writing clean C++ gameplay code, exposing parameterized UPROPERTY / UFUNCTION hooks to Blueprints.",
-    relevantProjects: ["Game Systems Architecture", "Descent Traversal", "3 Game Jams"],
-    relatedTech: ["C++", "Blueprints", "Blender"],
-    levelLabel: "Primary Engine"
+    id: "cpp-lang",
+    name: "C++ (C++20)",
+    category: "LANGUAGES",
+    status: "USED_IN_PROJECTS",
+    shortDescription: "Modern C++ with concepts, RAII, memory management, and high-performance algorithms.",
+    usedForOrFocus: "Authoring native desktop terminal applications, OpenGL graphics engines, and decoupled game state systems.",
+    evidenceNotes: "Wrote REMoErminal from scratch with C++20, and built the OpenGL 4.6 rendering lab with zero memory leaks.",
+    relevantProjects: ["REMoErminal", "OpenGL Rendering Lab", "Retropunk Game Jam"],
+    levelBadge: "USED IN PROJECTS"
   },
   {
-    id: "blueprints",
-    name: "Unreal Blueprints",
-    category: "GAME_DEV",
-    shortDescription: "Visual scripting system for rapid UI binding, gameplay event dispatching, and prototyping.",
-    usedFor: "Rapid iteration during game jams, binding audio-visual feedback, and creating artist-friendly parameter exposes.",
-    depthNotes: "Strict adherence to avoiding heavy tick logic in Blueprints; keeping math and state logic in native C++.",
-    relevantProjects: ["Game Systems Architecture", "Game Jam Prototypes"],
-    relatedTech: ["Unreal Engine 5", "C++"],
-    levelLabel: "Production Workflow"
+    id: "rust-lang",
+    name: "Rust",
+    category: "LANGUAGES",
+    status: "USED_IN_PROJECTS",
+    shortDescription: "Memory safety without garbage collection, ownership semantics, and low-level GPU interfacing.",
+    usedForOrFocus: "Engineering a native 3D texture painting application architected directly on top of the Vulkan API.",
+    evidenceNotes: "Utilized Rust's type system and cargo toolchain to architect REMoAINTER with modular Vulkan pipeline passes.",
+    relevantProjects: ["REMoAINTER — Texture Painting"],
+    levelBadge: "USED IN PROJECTS"
   },
   {
-    id: "game-systems",
-    name: "Gameplay Systems & State Machines",
-    category: "GAME_DEV",
-    shortDescription: "Decoupled architecture: state machines, component patterns, observer pattern, inventory.",
-    usedFor: "Preventing spaghetti game code; maintaining responsive movement and deterministic state handling.",
-    depthNotes: "Engineered character movement states (idle, sprint, wall-run, airborne) with clean enter/exit transitions.",
-    relevantProjects: ["Game Systems Architecture", "Retropunk Game Jam"],
-    relatedTech: ["C++", "Unreal Engine 5"],
-    levelLabel: "Architecture Focus"
+    id: "python-lang",
+    name: "Python",
+    category: "LANGUAGES",
+    status: "USED_IN_PROJECTS",
+    shortDescription: "Scripting, system automation, network packet analysis, and machine learning pipelines.",
+    usedForOrFocus: "Rapid network protocol dissection, Scapy socket sniffing, CVE parsing, and AI experimentation.",
+    evidenceNotes: "Constructed the award-winning IoT network vulnerability scanner and tensor analysis testbeds in Python.",
+    relevantProjects: ["IoT Vulnerability Analyzer", "Intelligence Lab"],
+    levelBadge: "USED IN PROJECTS"
+  },
+  {
+    id: "ts-js-lang",
+    name: "JavaScript / TypeScript",
+    category: "LANGUAGES",
+    status: "USED_IN_PROJECTS",
+    shortDescription: "Strict typing, asynchronous runtimes, browser environments, and modern web application development.",
+    usedForOrFocus: "Building responsive web interfaces, Next.js server components, and Electron desktop agent controllers.",
+    evidenceNotes: "TypeScript codebase powering REMoWser, this tactical Next.js portfolio, and full-stack web applications.",
+    relevantProjects: ["REMoWser", "Digital Portfolio"],
+    levelBadge: "USED IN PROJECTS"
   },
 
-  // CORE ENGINEERING
+  // --- SYSTEMS & TOOLCHAINS ---
   {
-    id: "cpp",
-    name: "C++ (17 / 20)",
-    category: "ENGINEERING",
-    shortDescription: "Low-level systems language: RAII, pointer semantics, memory management, STL algorithms.",
-    usedFor: "Core graphics engine development, game systems architecture, algorithmic problem solving.",
-    depthNotes: "Hands-on experience with memory layout, stack vs heap allocation, move semantics, custom struct stride, and templates.",
-    relevantProjects: ["OpenGL Lab", "Unreal Engine C++ Framework", "Task Schedulers"],
-    relatedTech: ["C", "CMake", "OpenGL", "Linux"],
-    levelLabel: "Primary Language"
-  },
-  {
-    id: "c-lang",
-    name: "C",
-    category: "ENGINEERING",
-    shortDescription: "Foundational procedural programming, raw memory, pointers, bitwise arithmetic.",
-    usedFor: "Understanding operating systems concepts, memory structures, and hardware interfaces.",
-    depthNotes: "Deep understanding of pointer arithmetic, dynamic memory allocation, and system-level calls.",
-    relevantProjects: ["Operating Systems Labs", "Systems Prototyping"],
-    relatedTech: ["C++", "Linux"],
-    levelLabel: "Foundational"
-  },
-  {
-    id: "python",
-    name: "Python 3",
-    category: "ENGINEERING",
-    shortDescription: "Rapid prototyping, automation, machine learning pipelines, socket networking.",
-    usedFor: "Building the IoT Vulnerability Analyzer, PyTorch experiments, Blender pipeline scripts, and data processing.",
-    depthNotes: "Fluent in asynchronous I/O, socket programming, Scapy packet dissection, and NumPy vectorization.",
-    relevantProjects: ["IoT Vulnerability Analyzer", "Intelligence Lab", "Blender CLI Automation"],
-    relatedTech: ["PyTorch", "NumPy", "Scapy"],
-    levelLabel: "Daily Tool"
-  },
-  {
-    id: "cmake",
-    name: "CMake & Build Systems",
-    category: "ENGINEERING",
-    shortDescription: "Cross-platform build configuration, dependency linking, compilation targets.",
-    usedFor: "Configuring multi-target C++ projects linking GLFW, GLAD, GLM, and external libraries.",
-    depthNotes: "Writing modular CMakeLists.txt with target_include_directories and target_link_libraries best practices.",
-    relevantProjects: ["OpenGL Lab", "C++ Testbeds"],
-    relatedTech: ["C++", "Git", "Linux"],
-    levelLabel: "Engineering Standard"
-  },
-  {
-    id: "linux",
-    name: "Linux (CachyOS / Arch)",
-    category: "ENGINEERING",
-    shortDescription: "Unix environment, bash scripting, process management, POSIX tooling, performance tuning.",
-    usedFor: "Primary operating system for daily development, compiling C++, running system utilities, and CLI workflows.",
-    depthNotes: "Comfortable with shell scripting, systemd services, terminal multiplexers, package managers, and GCC/Clang toolchains.",
-    relevantProjects: ["Daily Development", "IoT Scanner Daemons"],
-    relatedTech: ["Git", "Bash", "C++"],
-    levelLabel: "Primary OS"
-  },
-  {
-    id: "git",
+    id: "git-workflows",
     name: "Git & Version Control",
-    category: "ENGINEERING",
-    shortDescription: "Distributed version control, branching strategies, collaborative repository management.",
-    usedFor: "Version tracking across 30+ GitHub repositories, hackathon team collaboration, and asset revisioning.",
-    depthNotes: "Experienced with interactive rebasing, merge conflict resolution, LFS asset tracking, and release tags.",
-    relevantProjects: ["All 30+ Public Repositories", "Syntrix Community Collaboration"],
-    relatedTech: ["GitHub", "Linux"],
-    levelLabel: "Essential Tool"
+    category: "SYSTEMS",
+    status: "USED_IN_PROJECTS",
+    shortDescription: "Branching strategies, atomic commits, submodule management, and release tagging.",
+    usedForOrFocus: "Maintaining disciplined repository histories, reproducible releases, and collaboration workflows.",
+    evidenceNotes: "Maintains clean Git workflows across 20+ active GitHub repositories with verified commit histories.",
+    relevantProjects: ["All Public Repositories"],
+    levelBadge: "USED IN PROJECTS"
+  },
+  {
+    id: "cmake-build",
+    name: "CMake & Build Systems",
+    category: "SYSTEMS",
+    status: "USED_IN_PROJECTS",
+    shortDescription: "Cross-platform C++ build configuration, target management, and dependency integration.",
+    usedForOrFocus: "Configuring clean compile targets, strict compiler warnings, and linking SDL3/OpenGL libraries.",
+    evidenceNotes: "Structured multi-target CMakeLists.txt with debug sanitizers and static analysis flags in REMoErminal.",
+    relevantProjects: ["REMoErminal", "OpenGL Rendering Lab"],
+    levelBadge: "USED IN PROJECTS"
   },
 
-  // AI / ML
+  // --- APPLICATION DEVELOPMENT ---
   {
-    id: "pytorch",
-    name: "PyTorch",
-    category: "AI",
-    shortDescription: "Deep learning framework: autograd, dynamic computational graphs, tensor transformations.",
-    usedFor: "Designing neural networks, loss tracking, forward/backward pass dynamics, and feature representations.",
-    depthNotes: "Constructing custom nn.Module classes, loss minimization, optimizer tuning, and gradient inspection.",
-    relevantProjects: ["Intelligence Lab", "Neural Modeling Experiments"],
-    relatedTech: ["Python", "NumPy", "Scikit-Learn"],
-    levelLabel: "Lab Research"
+    id: "react-nextjs",
+    name: "React & Next.js",
+    category: "APP_DEV",
+    status: "USED_IN_PROJECTS",
+    shortDescription: "Component composition, Server Side Rendering, hooks, and responsive user interfaces.",
+    usedForOrFocus: "Designing interactive web interfaces, telemetry dashboards, and client-side agent visualizers.",
+    evidenceNotes: "Engineered this real-time portfolio with Next.js Turbopack, Tailwind CSS, and WebGL Three.js canvas.",
+    relevantProjects: ["Digital Portfolio", "REMoWser UI"],
+    levelBadge: "USED IN PROJECTS"
   },
   {
-    id: "numpy-pandas",
-    name: "NumPy & Pandas",
-    category: "AI",
-    shortDescription: "Vectorized array calculations, matrix transformations, tabular data structuring.",
-    usedFor: "Data ingestion, statistical preprocessing, matrix math, and telemetry analysis.",
-    depthNotes: "Broadcasting rules, vectorized slicing, memory-contiguous arrays, and efficient dataframe aggregation.",
-    relevantProjects: ["Intelligence Lab", "Hackathon Data Pipelines"],
-    relatedTech: ["Python", "PyTorch"],
-    levelLabel: "Core Math & Data"
-  },
-  {
-    id: "scikit-learn",
-    name: "Scikit-Learn",
-    category: "AI",
-    shortDescription: "Classical machine learning: classifiers, regressions, clustering, evaluation metrics.",
-    usedFor: "Benchmarking baseline models, feature scaling, train/test validation splits, and ROC/F1 scoring.",
-    depthNotes: "Hands-on experience with Decision Trees, Random Forests, SVMs, and PCA dimensionality reduction.",
-    relevantProjects: ["Anomaly Detection Experiments", "Hackathon Prototypes"],
-    relatedTech: ["Python", "NumPy"],
-    levelLabel: "Practical Applied ML"
+    id: "django-postgres",
+    name: "Django & PostgreSQL",
+    category: "APP_DEV",
+    status: "USED_IN_PROJECTS",
+    shortDescription: "Relational database schema modeling, ACID transactions, and secure REST APIs.",
+    usedForOrFocus: "Building backend services with structured data persistence and database migrations.",
+    evidenceNotes: "Implemented relational databases with foreign-key constraints, index tuning, and ORM abstractions.",
+    relevantProjects: ["Full-Stack Prototypes", "IoT Backend"],
+    levelBadge: "USED IN PROJECTS"
   },
 
-  // SYSTEMS & OTHER
+  // --- GRAPHICS & 3D (LONG-TERM) ---
   {
-    id: "iot-security",
-    name: "IoT & Network Security",
-    category: "SYSTEMS_OTHER",
-    shortDescription: "Packet analysis, protocol dissection (MQTT, CoAP, UPnP), CVE audits, raw sockets.",
-    usedFor: "Architecting award-winning security analyzers and penetration testing tools during national hackathons.",
-    depthNotes: "Inspecting TCP/UDP packet frames, identifying cleartext broadcast vulnerabilities, and hardening LAN nodes.",
-    relevantProjects: ["IoT Vulnerability Analyzer", "WifiSafe", "Cyber-Cognito"],
-    relatedTech: ["Python", "Scapy", "Linux"],
-    levelLabel: "Hackathon Winning Track"
+    id: "vulkan-api",
+    name: "Vulkan API Exploration",
+    category: "GRAPHICS_GAMES",
+    status: "USED_IN_PROJECTS",
+    shortDescription: "Explicit modern GPU programming: command buffers, memory staging, pipelines, and render passes.",
+    usedForOrFocus: "Laying the low-level rendering foundation for REMoAINTER in Rust.",
+    evidenceNotes: "Hands-on experience with Vulkan device initialization, swapchain creation, and pipeline barrier layouts.",
+    relevantProjects: ["REMoAINTER — Texture Painting"],
+    levelBadge: "USED IN PROJECTS"
   },
   {
-    id: "community-building",
-    name: "Community Leadership (Syntrix)",
-    category: "SYSTEMS_OTHER",
-    shortDescription: "Founder of Syntrix developer community (~250 members, 20+ weekly voice attendees).",
-    usedFor: "Organizing weekly technical voice meetups, peer code reviews, hackathon team mentoring, and tech roundtables.",
-    depthNotes: "Fostering an engineering culture prioritizing active building, live screen-shares, and real-world project delivery.",
-    relevantProjects: ["Syntrix Community", "Buildathons"],
-    relatedTech: ["Git", "Open Source", "Hackathons"],
-    levelLabel: "Founder & Community Lead"
+    id: "opengl-glsl",
+    name: "OpenGL 4.6 & Shaders (GLSL)",
+    category: "GRAPHICS_GAMES",
+    status: "USED_IN_PROJECTS",
+    shortDescription: "Hardware pipeline abstraction, VAO/VBO/EBO buffers, and Blinn-Phong/PBR shader mathematics.",
+    usedForOrFocus: "Building raw C++ graphics testbeds to master GPU draw calls and matrix transformations.",
+    evidenceNotes: "Developed real-time C++ rendering testbed running at 240+ FPS with live GLSL hot reloading.",
+    relevantProjects: ["OpenGL Lab"],
+    levelBadge: "USED IN PROJECTS"
+  },
+  {
+    id: "sdl3-gui",
+    name: "SDL3 Framework",
+    category: "GRAPHICS_GAMES",
+    status: "USED_IN_PROJECTS",
+    shortDescription: "Next-gen cross-platform hardware windowing, input events, and hardware-accelerated 2D renderers.",
+    usedForOrFocus: "Window creation, keystroke event loops, and text glyph rasterization in native applications.",
+    evidenceNotes: "Integrated SDL3 into C++20 for REMoErminal, achieving instant input response and clean window management.",
+    relevantProjects: ["REMoErminal"],
+    levelBadge: "USED IN PROJECTS"
+  },
+  {
+    id: "blender-substance",
+    name: "Blender & 3D Asset Creation",
+    category: "GRAPHICS_GAMES",
+    status: "USED_IN_PROJECTS",
+    shortDescription: "Sub-D modeling, UV unwrapping, high-to-low cage baking, and PBR texture creation.",
+    usedForOrFocus: "Crafting AAA-ready game assets, modular environment kits, and testing material pipelines.",
+    evidenceNotes: "Sculpted and baked the LANTERN hero asset with 4K PBR textures and verified 10.24 px/cm texel density.",
+    relevantProjects: ["LANTERN Hero Asset", "Environment Reels"],
+    levelBadge: "USED IN PROJECTS"
   }
 ];
